@@ -12,7 +12,7 @@ The first provider installed of a family also installs an extra provider-family 
 > [!NOTE]
 > Always install the family provider first to ensure anticipated/right version of image is pulled. Installing sub-provider first creates a missing dependency issue, which the crossplane package-manager always resolves by pulling latest family provider image. It might lead to unexpected behavior. 
  
-```
+```bash
 cat <<EOF | kubectl apply -f -
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -34,9 +34,11 @@ Apply this configuration with `kubectl apply -f`.
 
 After installing the provider, verify the install with `kubectl get providers`.
 
+```bash
+kubectl get providers
+```         
 ```
-$ kubectl get providers         
-
+# Sample output
 NAME                         INSTALLED   HEALTHY   PACKAGE                                                                  AGE
 provider-oci-family          True        True      ghcr.io/oracle-samples/provider-family-oci:v0.0.1-alpha.1-amd64          3m3s
 provider-oci-objectstorage   True        True      ghcr.io/oracle-samples/provider-oci-objectstorage:v0.0.1-alpha.1-amd64   3m2s
@@ -48,8 +50,8 @@ It may take up to 5 minutes to report `HEALTHY`.
 
 The official provider-family requires credentials to create and manage OCI resources.
 1. Create a secret by using the following command.
-    ```shell
-    $ kubectl create secret generic oci-creds \
+    ```bash
+    kubectl create secret generic oci-creds \
     --namespace=crossplane-system \
     --from-literal=credentials='{
     "tenancy_ocid": "REPLACE_WITH_YOUR_TENANCY_OCID",
@@ -62,8 +64,8 @@ The official provider-family requires credentials to create and manage OCI resou
    **Note:** Refer to `examples/providerconfig/secret.yaml.tmpl` for all available options. Additional reference [SDKConfig](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm).
 
 2. Register the provider configuration by running this command.
-    ```shell
-    $ cat <<EOF | kubectl apply -f -
+    ```bash
+    cat <<EOF | kubectl apply -f -
     apiVersion: oci.upbound.io/v1beta1
     kind: ProviderConfig
     metadata:
@@ -87,17 +89,19 @@ Create a managed resource to verify the provider-oci-objectstorage is functionin
 
 Use this command to instruct Crossplane to create the bucket in the OCI tenancy.
 
-```shell
+```bash
 # Edit examples/objectstorage/bucket.yaml with your compartment and storage name space as documented.
 # Apply the example that creates an Object Storage bucket
 
-$ kubectl apply -f examples/objectstorage/bucket.yaml
+kubectl apply -f examples/objectstorage/bucket.yaml
 ```
 
 Verify the status of the resource by running this command (example output is shown).
-```shell
-$ kubectl get managed
-
+```bash
+kubectl get managed
+```
+```
+# Sample output
 NAME                                                                             READY   SYNCED   EXTERNAL-NAME                                 AGE
 bucket.objectstorage.oci.upbound.io/bucket-via-crossplane4   True    True     n/idimd1fghobk/b/bucket-via-crossplane   10m
 ```
@@ -107,9 +111,11 @@ If the `READY` or `SYNCED` are blank or False use kubectl describe to understand
 
 Here is an example of a failure because the `spec.providerConfigRef.name` value in the `Bucket` doesn't match the `ProviderConfig` `metadata.name`.
 
+```bash
+kubectl describe bucket
 ```
-$kubectl describe bucket
-
+```
+# Sample output
 Name:         bucket-via-crossplane4
 Namespace:    
 Labels:       provider=oci
@@ -144,8 +150,11 @@ Events:
 
 The output indicates the `Bucket` is using a `ProviderConfig` named `default`. The applied `ProviderConfig` is `oci-provider`.
 
+```bash
+kubectl get providerconfig
 ```
-$ kubectl get providerconfig
+```
+# Sample output
 NAME           AGE
 oci-provider   7s
 ```
@@ -154,15 +163,19 @@ oci-provider   7s
 
 Remove the managed resource by using `kubectl delete -f examples/objectstorage/bucket.yaml`. Verify removal of the bucket with kubectl get buckets
 
+```bash
+kubectl delete -f examples/objectstorage/bucket.yaml
 ```
-$ kubectl delete -f examples/objectstorage/bucket.yaml
-
+```
+# Sample output
 bucket.objectstorage.oci.upbound.io "bucket-via-crossplane4" deleted
 ```
 
+```bash
+kubectl get buckets
 ```
-$ kubectl get buckets
-
+```
+# Sample output
 No resources found
 ```
 > [!Warning]
@@ -171,10 +184,10 @@ No resources found
 ## Delete the providers
 
 Remove the installed providers by
-```
-$ kubectl delete providers/provider-oci-objectstorage
+```bash
+kubectl delete providers/provider-oci-objectstorage
 
-$ kubectl delete providers/provider-oci-family
+kubectl delete providers/provider-oci-family
 ```
 
 > [!NOTE]
