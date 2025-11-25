@@ -23,28 +23,28 @@ Upjet creates XRM-conformant managed resources for the OCI APIs based on [OCI Te
 Crossplane installs on top of Kubernetes. Install Crossplane onto a Kubernetes cluster using the following steps. Ensure correctness of Kubernetes context selected.
 
 1. Create a namespace for Crossplane.
-    ```shell
-    $ kubectl create namespace crossplane-system
+    ```bash
+    kubectl create namespace crossplane-system
     ```
 1. Add a Helm repository for Crossplane.
-    ```shell
-    $ helm repo add crossplane-stable https://charts.crossplane.io/stable
+    ```bash
+    helm repo add crossplane-stable https://charts.crossplane.io/stable
     ```
 1. Update the Helm repository.
-    ```shell
-    $ helm repo update
+    ```bash
+    helm repo update
     ```
 1. Install Crossplane.
-    ```shell
-    $ helm install crossplane --namespace crossplane-system crossplane-stable/crossplane
+    ```bash
+    helm install crossplane --namespace crossplane-system crossplane-stable/crossplane
     ```
 1. Verify that Crossplane is deployed.
-    ```shell
-    $ helm list -n crossplane-system
+    ```bash
+    helm list -n crossplane-system
     ```
 1. Check for components installed as part of Crossplane on Kubernetes.
-    ```shell
-    $ kubectl get all -n crossplane-system
+    ```bash
+    kubectl get all -n crossplane-system
     ```
 
 ## Getting Started
@@ -61,7 +61,7 @@ This project welcomes contributions from the community. Before submitting a pull
 Consult the [security guide](./SECURITY.md) for our responsible security vulnerability disclosure process.
 
 ## License
-Copyright (c) 2022, 2023 Oracle and its affiliates.
+Copyright (c) 2022, 2023, 2025 Oracle and its affiliates.
 
 Released under the Apache 2.0 license.
 
