@@ -31,7 +31,16 @@ type TagDefaultInitParameters struct {
 	IsRequired *bool `json:"isRequired,omitempty" tf:"is_required,omitempty"`
 
 	// The OCID of the tag definition. The tag default will always assign a default value for this tag definition.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/identity/v1alpha1.Tag
 	TagDefinitionID *string `json:"tagDefinitionId,omitempty" tf:"tag_definition_id,omitempty"`
+
+	// Reference to a Tag in identity to populate tagDefinitionId.
+	// +kubebuilder:validation:Optional
+	TagDefinitionIDRef *v1.Reference `json:"tagDefinitionIdRef,omitempty" tf:"-"`
+
+	// Selector for a Tag in identity to populate tagDefinitionId.
+	// +kubebuilder:validation:Optional
+	TagDefinitionIDSelector *v1.Selector `json:"tagDefinitionIdSelector,omitempty" tf:"-"`
 
 	// (Updatable) The default value for the tag definition. This will be applied to all new resources created in the compartment.
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
@@ -87,8 +96,17 @@ type TagDefaultParameters struct {
 	IsRequired *bool `json:"isRequired,omitempty" tf:"is_required,omitempty"`
 
 	// The OCID of the tag definition. The tag default will always assign a default value for this tag definition.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/identity/v1alpha1.Tag
 	// +kubebuilder:validation:Optional
 	TagDefinitionID *string `json:"tagDefinitionId,omitempty" tf:"tag_definition_id,omitempty"`
+
+	// Reference to a Tag in identity to populate tagDefinitionId.
+	// +kubebuilder:validation:Optional
+	TagDefinitionIDRef *v1.Reference `json:"tagDefinitionIdRef,omitempty" tf:"-"`
+
+	// Selector for a Tag in identity to populate tagDefinitionId.
+	// +kubebuilder:validation:Optional
+	TagDefinitionIDSelector *v1.Selector `json:"tagDefinitionIdSelector,omitempty" tf:"-"`
 
 	// (Updatable) The default value for the tag definition. This will be applied to all new resources created in the compartment.
 	// +kubebuilder:validation:Optional
@@ -131,7 +149,6 @@ type TagDefaultStatus struct {
 type TagDefault struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.tagDefinitionId) || (has(self.initProvider) && has(self.initProvider.tagDefinitionId))",message="spec.forProvider.tagDefinitionId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.value) || (has(self.initProvider) && has(self.initProvider.value))",message="spec.forProvider.value is a required parameter"
 	Spec   TagDefaultSpec   `json:"spec"`
 	Status TagDefaultStatus `json:"status,omitempty"`

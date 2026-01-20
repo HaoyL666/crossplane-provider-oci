@@ -11,6 +11,4 @@ spec:
     compartmentIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example
-    standardTagNamespaceNameSelector:
-      matchLabels:
-        testing.upbound.io/example-name: test_tag_namespace
+    standardTagNamespaceName: ${var.tag_namespace_name}

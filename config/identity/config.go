@@ -76,15 +76,17 @@ func Configure(p *config.Provider) {
 		r.References["compartment_id"] = config.Reference{
 			TerraformName: "oci_identity_compartment",
 		}
-		r.References["admin_user_name"] = config.Reference{
-			TerraformName: "oci_identity_user",
-			// We need to extract the name from the user ID
-			// The user ID is in the format `ocid1.user.oc1..<region>..<id>`
-			// We need to get the name from the ID
-			// This can be achieved by using the `config.IdentifierFromProvider` for the `admin_user_name`
-			// However, this is not directly possible as it's not an ID, it's a name
-			// So, we need to use a different approach, possibly using a custom extractor or a different reference type
-		}
+		/*
+			r.References["admin_user_name"] = config.Reference{
+				TerraformName: "oci_identity_user",
+				// We need to extract the name from the user ID
+				// The user ID is in the format `ocid1.user.oc1..<region>..<id>`
+				// We need to get the name from the ID
+				// This can be achieved by using the `config.IdentifierFromProvider` for the `admin_user_name`
+				// However, this is not directly possible as it's not an ID, it's a name
+				// So, we need to use a different approach, possibly using a custom extractor or a different reference type
+			}
+		*/
 	})
 
 	p.AddResourceConfigurator("oci_identity_domain_replication_to_region", func(r *config.Resource) {
@@ -111,15 +113,17 @@ func Configure(p *config.Provider) {
 		r.References["compartment_id"] = config.Reference{
 			TerraformName: "oci_identity_compartment",
 		}
-		r.References["standard_tag_namespace_name"] = config.Reference{
-			TerraformName: "oci_identity_tag_namespace",
-			// We need to extract the name from the tag namespace ID
-			// The tag namespace ID is in the format `ocid1.tagnamespace.oc1..<region>..<id>`
-			// We need to get the name from the ID
-			// This can be achieved by using the `config.IdentifierFromProvider` for the `standard_tag_namespace_name`
-			// However, this is not directly possible as it's not an ID, it's a name
-			// So, we need to use a different approach, possibly using a custom extractor or a different reference type
-		}
+		/*
+			r.References["standard_tag_namespace_name"] = config.Reference{
+				TerraformName: "oci_identity_tag_namespace",
+				// We need to extract the name from the tag namespace ID
+				// The tag namespace ID is in the format `ocid1.tagnamespace.oc1..<region>..<id>`
+				// We need to get the name from the ID
+				// This can be achieved by using the `config.IdentifierFromProvider` for the `standard_tag_namespace_name`
+				// However, this is not directly possible as it's not an ID, it's a name
+				// So, we need to use a different approach, possibly using a custom extractor or a different reference type
+			}
+		*/
 	})
 
 	p.AddResourceConfigurator("oci_identity_network_source", func(r *config.Resource) {
@@ -137,6 +141,9 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("oci_identity_tag_default", func(r *config.Resource) {
 		r.References["compartment_id"] = config.Reference{
 			TerraformName: "oci_identity_compartment",
+		}
+		r.References["tag_definition_id"] = config.Reference{
+			TerraformName: "oci_identity_tag",
 		}
 	})
 

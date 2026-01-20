@@ -12,5 +12,7 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: example
     isRequired: ${var.tag_default_is_required}
-    tagDefinitionId: ${oci_identity_tag_definition.test_tag_definition.id}
+    tagDefinitionIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: test_tag_definition
     value: ${var.tag_default_value}

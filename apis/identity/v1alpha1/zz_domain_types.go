@@ -25,16 +25,7 @@ type DomainInitParameters struct {
 	AdminLastName *string `json:"adminLastName,omitempty" tf:"admin_last_name,omitempty"`
 
 	// The admin user name
-	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/identity/v1alpha1.User
 	AdminUserName *string `json:"adminUserName,omitempty" tf:"admin_user_name,omitempty"`
-
-	// Reference to a User in identity to populate adminUserName.
-	// +kubebuilder:validation:Optional
-	AdminUserNameRef *v1.Reference `json:"adminUserNameRef,omitempty" tf:"-"`
-
-	// Selector for a User in identity to populate adminUserName.
-	// +kubebuilder:validation:Optional
-	AdminUserNameSelector *v1.Selector `json:"adminUserNameSelector,omitempty" tf:"-"`
 
 	// (Updatable) The OCID of the Compartment where domain is created
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/identity/v1alpha1.Compartment
@@ -167,17 +158,8 @@ type DomainParameters struct {
 	AdminLastName *string `json:"adminLastName,omitempty" tf:"admin_last_name,omitempty"`
 
 	// The admin user name
-	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/identity/v1alpha1.User
 	// +kubebuilder:validation:Optional
 	AdminUserName *string `json:"adminUserName,omitempty" tf:"admin_user_name,omitempty"`
-
-	// Reference to a User in identity to populate adminUserName.
-	// +kubebuilder:validation:Optional
-	AdminUserNameRef *v1.Reference `json:"adminUserNameRef,omitempty" tf:"-"`
-
-	// Selector for a User in identity to populate adminUserName.
-	// +kubebuilder:validation:Optional
-	AdminUserNameSelector *v1.Selector `json:"adminUserNameSelector,omitempty" tf:"-"`
 
 	// (Updatable) The OCID of the Compartment where domain is created
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/identity/v1alpha1.Compartment

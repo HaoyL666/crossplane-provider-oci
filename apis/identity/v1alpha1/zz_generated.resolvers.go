@@ -275,25 +275,6 @@ func (mg *Domain) ResolveReferences(ctx context.Context, c client.Reader) error 
 	var rsp reference.ResolutionResponse
 	var err error
 	{
-		m, l, err = apisresolver.GetManagedResource("identity.oci.upbound.io", "v1alpha1", "User", "UserList")
-		if err != nil {
-			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
-		}
-
-		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.AdminUserName),
-			Extract:      reference.ExternalName(),
-			Reference:    mg.Spec.ForProvider.AdminUserNameRef,
-			Selector:     mg.Spec.ForProvider.AdminUserNameSelector,
-			To:           reference.To{List: l, Managed: m},
-		})
-	}
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.AdminUserName")
-	}
-	mg.Spec.ForProvider.AdminUserName = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.AdminUserNameRef = rsp.ResolvedReference
-	{
 		m, l, err = apisresolver.GetManagedResource("identity.oci.upbound.io", "v1alpha1", "Compartment", "CompartmentList")
 		if err != nil {
 			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
@@ -312,25 +293,6 @@ func (mg *Domain) ResolveReferences(ctx context.Context, c client.Reader) error 
 	}
 	mg.Spec.ForProvider.CompartmentID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.CompartmentIDRef = rsp.ResolvedReference
-	{
-		m, l, err = apisresolver.GetManagedResource("identity.oci.upbound.io", "v1alpha1", "User", "UserList")
-		if err != nil {
-			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
-		}
-
-		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.AdminUserName),
-			Extract:      reference.ExternalName(),
-			Reference:    mg.Spec.InitProvider.AdminUserNameRef,
-			Selector:     mg.Spec.InitProvider.AdminUserNameSelector,
-			To:           reference.To{List: l, Managed: m},
-		})
-	}
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.InitProvider.AdminUserName")
-	}
-	mg.Spec.InitProvider.AdminUserName = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.InitProvider.AdminUserNameRef = rsp.ResolvedReference
 	{
 		m, l, err = apisresolver.GetManagedResource("identity.oci.upbound.io", "v1alpha1", "Compartment", "CompartmentList")
 		if err != nil {
@@ -620,25 +582,6 @@ func (mg *ImportStandardTagsManagement) ResolveReferences(ctx context.Context, c
 	mg.Spec.ForProvider.CompartmentID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.CompartmentIDRef = rsp.ResolvedReference
 	{
-		m, l, err = apisresolver.GetManagedResource("identity.oci.upbound.io", "v1alpha1", "TagNamespace", "TagNamespaceList")
-		if err != nil {
-			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
-		}
-
-		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.StandardTagNamespaceName),
-			Extract:      reference.ExternalName(),
-			Reference:    mg.Spec.ForProvider.StandardTagNamespaceNameRef,
-			Selector:     mg.Spec.ForProvider.StandardTagNamespaceNameSelector,
-			To:           reference.To{List: l, Managed: m},
-		})
-	}
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.StandardTagNamespaceName")
-	}
-	mg.Spec.ForProvider.StandardTagNamespaceName = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.StandardTagNamespaceNameRef = rsp.ResolvedReference
-	{
 		m, l, err = apisresolver.GetManagedResource("identity.oci.upbound.io", "v1alpha1", "Compartment", "CompartmentList")
 		if err != nil {
 			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
@@ -657,25 +600,6 @@ func (mg *ImportStandardTagsManagement) ResolveReferences(ctx context.Context, c
 	}
 	mg.Spec.InitProvider.CompartmentID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.CompartmentIDRef = rsp.ResolvedReference
-	{
-		m, l, err = apisresolver.GetManagedResource("identity.oci.upbound.io", "v1alpha1", "TagNamespace", "TagNamespaceList")
-		if err != nil {
-			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
-		}
-
-		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.StandardTagNamespaceName),
-			Extract:      reference.ExternalName(),
-			Reference:    mg.Spec.InitProvider.StandardTagNamespaceNameRef,
-			Selector:     mg.Spec.InitProvider.StandardTagNamespaceNameSelector,
-			To:           reference.To{List: l, Managed: m},
-		})
-	}
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.InitProvider.StandardTagNamespaceName")
-	}
-	mg.Spec.InitProvider.StandardTagNamespaceName = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.InitProvider.StandardTagNamespaceNameRef = rsp.ResolvedReference
 
 	return nil
 }
@@ -908,6 +832,25 @@ func (mg *TagDefault) ResolveReferences(ctx context.Context, c client.Reader) er
 	mg.Spec.ForProvider.CompartmentID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.CompartmentIDRef = rsp.ResolvedReference
 	{
+		m, l, err = apisresolver.GetManagedResource("identity.oci.upbound.io", "v1alpha1", "Tag", "TagList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.TagDefinitionID),
+			Extract:      reference.ExternalName(),
+			Reference:    mg.Spec.ForProvider.TagDefinitionIDRef,
+			Selector:     mg.Spec.ForProvider.TagDefinitionIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.TagDefinitionID")
+	}
+	mg.Spec.ForProvider.TagDefinitionID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.TagDefinitionIDRef = rsp.ResolvedReference
+	{
 		m, l, err = apisresolver.GetManagedResource("identity.oci.upbound.io", "v1alpha1", "Compartment", "CompartmentList")
 		if err != nil {
 			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
@@ -926,6 +869,25 @@ func (mg *TagDefault) ResolveReferences(ctx context.Context, c client.Reader) er
 	}
 	mg.Spec.InitProvider.CompartmentID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.CompartmentIDRef = rsp.ResolvedReference
+	{
+		m, l, err = apisresolver.GetManagedResource("identity.oci.upbound.io", "v1alpha1", "Tag", "TagList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.TagDefinitionID),
+			Extract:      reference.ExternalName(),
+			Reference:    mg.Spec.InitProvider.TagDefinitionIDRef,
+			Selector:     mg.Spec.InitProvider.TagDefinitionIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.TagDefinitionID")
+	}
+	mg.Spec.InitProvider.TagDefinitionID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.TagDefinitionIDRef = rsp.ResolvedReference
 
 	return nil
 }

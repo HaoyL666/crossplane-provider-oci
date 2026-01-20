@@ -28,16 +28,7 @@ type ImportStandardTagsManagementInitParameters struct {
 	CompartmentIDSelector *v1.Selector `json:"compartmentIdSelector,omitempty" tf:"-"`
 
 	// The name of standard tag namespace that will be imported in bulk
-	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/identity/v1alpha1.TagNamespace
 	StandardTagNamespaceName *string `json:"standardTagNamespaceName,omitempty" tf:"standard_tag_namespace_name,omitempty"`
-
-	// Reference to a TagNamespace in identity to populate standardTagNamespaceName.
-	// +kubebuilder:validation:Optional
-	StandardTagNamespaceNameRef *v1.Reference `json:"standardTagNamespaceNameRef,omitempty" tf:"-"`
-
-	// Selector for a TagNamespace in identity to populate standardTagNamespaceName.
-	// +kubebuilder:validation:Optional
-	StandardTagNamespaceNameSelector *v1.Selector `json:"standardTagNamespaceNameSelector,omitempty" tf:"-"`
 }
 
 type ImportStandardTagsManagementObservation struct {
@@ -69,17 +60,8 @@ type ImportStandardTagsManagementParameters struct {
 	CompartmentIDSelector *v1.Selector `json:"compartmentIdSelector,omitempty" tf:"-"`
 
 	// The name of standard tag namespace that will be imported in bulk
-	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/identity/v1alpha1.TagNamespace
 	// +kubebuilder:validation:Optional
 	StandardTagNamespaceName *string `json:"standardTagNamespaceName,omitempty" tf:"standard_tag_namespace_name,omitempty"`
-
-	// Reference to a TagNamespace in identity to populate standardTagNamespaceName.
-	// +kubebuilder:validation:Optional
-	StandardTagNamespaceNameRef *v1.Reference `json:"standardTagNamespaceNameRef,omitempty" tf:"-"`
-
-	// Selector for a TagNamespace in identity to populate standardTagNamespaceName.
-	// +kubebuilder:validation:Optional
-	StandardTagNamespaceNameSelector *v1.Selector `json:"standardTagNamespaceNameSelector,omitempty" tf:"-"`
 }
 
 // ImportStandardTagsManagementSpec defines the desired state of ImportStandardTagsManagement
@@ -118,8 +100,9 @@ type ImportStandardTagsManagementStatus struct {
 type ImportStandardTagsManagement struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              ImportStandardTagsManagementSpec   `json:"spec"`
-	Status            ImportStandardTagsManagementStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.standardTagNamespaceName) || (has(self.initProvider) && has(self.initProvider.standardTagNamespaceName))",message="spec.forProvider.standardTagNamespaceName is a required parameter"
+	Spec   ImportStandardTagsManagementSpec   `json:"spec"`
+	Status ImportStandardTagsManagementStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
