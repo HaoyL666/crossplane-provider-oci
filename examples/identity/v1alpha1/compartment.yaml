@@ -6,7 +6,6 @@ metadata:
   name: compartment1
 spec:
   forProvider:
-    compartmentId: "ocid1.compartment.oc1..aaaaaaaahblyv5rr7chh3kb5utyh6c4vsvs75wg35taovjjnlftvjzgjt4qa"
-    #compartmentId: "${COMPARTMENT_OCID}"
+    compartmentId: "${COMPARTMENT_OCID}"
     description: "Test Compartment"
     name: compartment1
