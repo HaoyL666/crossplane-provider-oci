@@ -1,0 +1,14 @@
+apiVersion: identity.oci.upbound.io/v1alpha1
+kind: ImportStandardTagsManagement
+metadata:
+  annotations:
+    meta.upbound.io/example-id: identity/v1alpha1/importstandardtagsmanagement
+  labels:
+    testing.upbound.io/example-name: test_import_standard_tags_management
+  name: test-import-standard-tags-management
+spec:
+  forProvider:
+    compartmentIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    standardTagNamespaceName: ${var.tag_namespace_name}

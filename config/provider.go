@@ -23,7 +23,6 @@ import (
 	ujconfig "github.com/crossplane/upjet/pkg/config"
 
 	"github.com/oracle/provider-oci/config/artifacts"
-	"github.com/oracle/provider-oci/hack"
 	"github.com/oracle/provider-oci/config/certificatesmanagement"
 	"github.com/oracle/provider-oci/config/containerengine"
 	"github.com/oracle/provider-oci/config/core"
@@ -37,12 +36,15 @@ import (
 	"github.com/oracle/provider-oci/config/loadbalancer"
 	"github.com/oracle/provider-oci/config/logging"
 	"github.com/oracle/provider-oci/config/monitoring"
+	"github.com/oracle/provider-oci/config/mysql"
 	"github.com/oracle/provider-oci/config/networkfirewall"
 	"github.com/oracle/provider-oci/config/networkloadbalancer"
 	"github.com/oracle/provider-oci/config/objectstorage"
 	"github.com/oracle/provider-oci/config/ons"
+	"github.com/oracle/provider-oci/config/psql"
 	"github.com/oracle/provider-oci/config/streaming"
 	"github.com/oracle/provider-oci/config/vault"
+	"github.com/oracle/provider-oci/hack"
 )
 
 const (
@@ -60,10 +62,13 @@ var providerMetadata string
 func GetProvider() *ujconfig.Provider {
 	pc := ujconfig.NewProvider([]byte(providerSchema), resourcePrefix, modulePath, []byte(providerMetadata),
 		ujconfig.WithRootGroup("oci.upbound.io"),
-		ujconfig.WithIncludeList(ExternalNameConfigured()),
+		// This will include manually configured resources + 6 MySQL resources + 3 PSQL resources
+		ujconfig.WithIncludeList(append(ExternalNameConfigured(), "oci_mysql_.*", "oci_psql_.*", "oci_identity_.*")),
 		ujconfig.WithDefaultResourceOptions(
 			GroupKindOverrides(),
 			ExternalNameConfigurations(),
+			AutoExternalNameConfiguration(), // Automatic external name for unconfigured resources
+
 		),
 		ujconfig.WithFeaturesPackage("internal/features"),
 		ujconfig.WithMainTemplate(hack.MainTemplate),
@@ -91,6 +96,8 @@ func GetProvider() *ujconfig.Provider {
 		events.Configure,
 		vault.Configure,
 		streaming.Configure,
+		mysql.Configure,
+		psql.Configure,
 	} {
 		configure(pc)
 	}

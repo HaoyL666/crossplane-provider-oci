@@ -25,12 +25,14 @@ import (
 	v1alpha1loadbalancer "github.com/oracle/provider-oci/apis/loadbalancer/v1alpha1"
 	v1alpha1logging "github.com/oracle/provider-oci/apis/logging/v1alpha1"
 	v1alpha1monitoring "github.com/oracle/provider-oci/apis/monitoring/v1alpha1"
+	v1alpha1mysql "github.com/oracle/provider-oci/apis/mysql/v1alpha1"
 	v1alpha1networkconnectivity "github.com/oracle/provider-oci/apis/networkconnectivity/v1alpha1"
 	v1alpha1networkfirewall "github.com/oracle/provider-oci/apis/networkfirewall/v1alpha1"
 	v1alpha1networking "github.com/oracle/provider-oci/apis/networking/v1alpha1"
 	v1alpha1networkloadbalancer "github.com/oracle/provider-oci/apis/networkloadbalancer/v1alpha1"
 	v1alpha1objectstorage "github.com/oracle/provider-oci/apis/objectstorage/v1alpha1"
 	v1alpha1ons "github.com/oracle/provider-oci/apis/ons/v1alpha1"
+	v1alpha1psql "github.com/oracle/provider-oci/apis/psql/v1alpha1"
 	v1alpha1streaming "github.com/oracle/provider-oci/apis/streaming/v1alpha1"
 	v1alpha1apis "github.com/oracle/provider-oci/apis/v1alpha1"
 	v1beta1 "github.com/oracle/provider-oci/apis/v1beta1"
@@ -55,12 +57,14 @@ func init() {
 		v1alpha1loadbalancer.SchemeBuilder.AddToScheme,
 		v1alpha1logging.SchemeBuilder.AddToScheme,
 		v1alpha1monitoring.SchemeBuilder.AddToScheme,
+		v1alpha1mysql.SchemeBuilder.AddToScheme,
 		v1alpha1networkconnectivity.SchemeBuilder.AddToScheme,
 		v1alpha1networkfirewall.SchemeBuilder.AddToScheme,
 		v1alpha1networking.SchemeBuilder.AddToScheme,
 		v1alpha1networkloadbalancer.SchemeBuilder.AddToScheme,
 		v1alpha1objectstorage.SchemeBuilder.AddToScheme,
 		v1alpha1ons.SchemeBuilder.AddToScheme,
+		v1alpha1psql.SchemeBuilder.AddToScheme,
 		v1alpha1streaming.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
