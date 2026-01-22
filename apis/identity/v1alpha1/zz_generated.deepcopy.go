@@ -45083,6 +45083,16 @@ func (in *DomainsSocialIdentityProviderInitParameters) DeepCopyInto(out *Domains
 			}
 		}
 	}
+	if in.AppleDevID != nil {
+		in, out := &in.AppleDevID, &out.AppleDevID
+		*out = new(string)
+		**out = **in
+	}
+	if in.AppleKeyID != nil {
+		in, out := &in.AppleKeyID, &out.AppleKeyID
+		*out = new(string)
+		**out = **in
+	}
 	if in.Authorization != nil {
 		in, out := &in.Authorization, &out.Authorization
 		*out = new(string)
@@ -45459,6 +45469,16 @@ func (in *DomainsSocialIdentityProviderObservation) DeepCopyInto(out *DomainsSoc
 			}
 		}
 	}
+	if in.AppleDevID != nil {
+		in, out := &in.AppleDevID, &out.AppleDevID
+		*out = new(string)
+		**out = **in
+	}
+	if in.AppleKeyID != nil {
+		in, out := &in.AppleKeyID, &out.AppleKeyID
+		*out = new(string)
+		**out = **in
+	}
 	if in.Authorization != nil {
 		in, out := &in.Authorization, &out.Authorization
 		*out = new(string)
@@ -45724,6 +45744,16 @@ func (in *DomainsSocialIdentityProviderParameters) DeepCopyInto(out *DomainsSoci
 				**out = **in
 			}
 		}
+	}
+	if in.AppleDevID != nil {
+		in, out := &in.AppleDevID, &out.AppleDevID
+		*out = new(string)
+		**out = **in
+	}
+	if in.AppleKeyID != nil {
+		in, out := &in.AppleKeyID, &out.AppleKeyID
+		*out = new(string)
+		**out = **in
 	}
 	if in.Authorization != nil {
 		in, out := &in.Authorization, &out.Authorization
@@ -65850,6 +65880,16 @@ func (in *UrnietfparamsscimschemasoracleidcsextensionsocialIdentityProviderInitP
 			}
 		}
 	}
+	if in.AppleDevID != nil {
+		in, out := &in.AppleDevID, &out.AppleDevID
+		*out = new(string)
+		**out = **in
+	}
+	if in.AppleKeyID != nil {
+		in, out := &in.AppleKeyID, &out.AppleKeyID
+		*out = new(string)
+		**out = **in
+	}
 	if in.AuthzURL != nil {
 		in, out := &in.AuthzURL, &out.AuthzURL
 		*out = new(string)
@@ -65979,6 +66019,16 @@ func (in *UrnietfparamsscimschemasoracleidcsextensionsocialIdentityProviderObser
 			}
 		}
 	}
+	if in.AppleDevID != nil {
+		in, out := &in.AppleDevID, &out.AppleDevID
+		*out = new(string)
+		**out = **in
+	}
+	if in.AppleKeyID != nil {
+		in, out := &in.AppleKeyID, &out.AppleKeyID
+		*out = new(string)
+		**out = **in
+	}
 	if in.AuthzURL != nil {
 		in, out := &in.AuthzURL, &out.AuthzURL
 		*out = new(string)
@@ -66107,6 +66157,16 @@ func (in *UrnietfparamsscimschemasoracleidcsextensionsocialIdentityProviderParam
 				**out = **in
 			}
 		}
+	}
+	if in.AppleDevID != nil {
+		in, out := &in.AppleDevID, &out.AppleDevID
+		*out = new(string)
+		**out = **in
+	}
+	if in.AppleKeyID != nil {
+		in, out := &in.AppleKeyID, &out.AppleKeyID
+		*out = new(string)
+		**out = **in
 	}
 	if in.AuthzURL != nil {
 		in, out := &in.AuthzURL, &out.AuthzURL

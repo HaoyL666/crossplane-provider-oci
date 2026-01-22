@@ -353,6 +353,12 @@ spec:
                           items:
                             type: string
                           type: array
+                        appleDevId:
+                          description: (Updatable) Apple Developer ID
+                          type: string
+                        appleKeyId:
+                          description: (Updatable) Apple Private Key ID
+                          type: string
                         authzUrl:
                           description: (Updatable) Social IDP Authorization URL
                           type: string
@@ -808,6 +814,12 @@ spec:
                           items:
                             type: string
                           type: array
+                        appleDevId:
+                          description: (Updatable) Apple Developer ID
+                          type: string
+                        appleKeyId:
+                          description: (Updatable) Apple Private Key ID
+                          type: string
                         authzUrl:
                           description: (Updatable) Social IDP Authorization URL
                           type: string
@@ -1582,6 +1594,12 @@ spec:
                           items:
                             type: string
                           type: array
+                        appleDevId:
+                          description: (Updatable) Apple Developer ID
+                          type: string
+                        appleKeyId:
+                          description: (Updatable) Apple Private Key ID
+                          type: string
                         authzUrl:
                           description: (Updatable) Social IDP Authorization URL
                           type: string
