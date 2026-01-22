@@ -63,7 +63,7 @@ func GetProvider() *ujconfig.Provider {
 	pc := ujconfig.NewProvider([]byte(providerSchema), resourcePrefix, modulePath, []byte(providerMetadata),
 		ujconfig.WithRootGroup("oci.upbound.io"),
 		// This will include manually configured resources + 6 MySQL resources + 3 PSQL resources
-		ujconfig.WithIncludeList(append(ExternalNameConfigured(), "oci_mysql_.*", "oci_psql_.*")),
+		ujconfig.WithIncludeList(append(ExternalNameConfigured(), "oci_mysql_.*", "oci_psql_.*", "oci_identity_.*")),
 		ujconfig.WithDefaultResourceOptions(
 			GroupKindOverrides(),
 			ExternalNameConfigurations(),
