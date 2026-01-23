@@ -70,6 +70,12 @@ type DomainsSocialIdentityProviderInitParameters struct {
 	// (Updatable) Admin scope to request
 	AdminScope []*string `json:"adminScope,omitempty" tf:"admin_scope,omitempty"`
 
+	// (Updatable) Apple Developer ID
+	AppleDevID *string `json:"appleDevId,omitempty" tf:"apple_dev_id,omitempty"`
+
+	// (Updatable) Apple Private Key ID
+	AppleKeyID *string `json:"appleKeyId,omitempty" tf:"apple_key_id,omitempty"`
+
 	// (Updatable) The Authorization field value consists of credentials containing the authentication information of the user agent for the realm of the resource being requested.
 	Authorization *string `json:"authorization,omitempty" tf:"authorization,omitempty"`
 
@@ -220,6 +226,12 @@ type DomainsSocialIdentityProviderObservation struct {
 	// (Updatable) Admin scope to request
 	AdminScope []*string `json:"adminScope,omitempty" tf:"admin_scope,omitempty"`
 
+	// (Updatable) Apple Developer ID
+	AppleDevID *string `json:"appleDevId,omitempty" tf:"apple_dev_id,omitempty"`
+
+	// (Updatable) Apple Private Key ID
+	AppleKeyID *string `json:"appleKeyId,omitempty" tf:"apple_key_id,omitempty"`
+
 	// (Updatable) The Authorization field value consists of credentials containing the authentication information of the user agent for the realm of the resource being requested.
 	Authorization *string `json:"authorization,omitempty" tf:"authorization,omitempty"`
 
@@ -354,6 +366,14 @@ type DomainsSocialIdentityProviderParameters struct {
 	// (Updatable) Admin scope to request
 	// +kubebuilder:validation:Optional
 	AdminScope []*string `json:"adminScope,omitempty" tf:"admin_scope,omitempty"`
+
+	// (Updatable) Apple Developer ID
+	// +kubebuilder:validation:Optional
+	AppleDevID *string `json:"appleDevId,omitempty" tf:"apple_dev_id,omitempty"`
+
+	// (Updatable) Apple Private Key ID
+	// +kubebuilder:validation:Optional
+	AppleKeyID *string `json:"appleKeyId,omitempty" tf:"apple_key_id,omitempty"`
 
 	// (Updatable) The Authorization field value consists of credentials containing the authentication information of the user agent for the realm of the resource being requested.
 	// +kubebuilder:validation:Optional
