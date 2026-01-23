@@ -42,6 +42,7 @@ import (
 	"github.com/oracle/provider-oci/config/objectstorage"
 	"github.com/oracle/provider-oci/config/ons"
 	"github.com/oracle/provider-oci/config/psql"
+	"github.com/oracle/provider-oci/config/redis"
 	"github.com/oracle/provider-oci/config/streaming"
 	"github.com/oracle/provider-oci/config/vault"
 	"github.com/oracle/provider-oci/hack"
@@ -64,6 +65,7 @@ var ServiceWildcards = []string{
 	"oci_objectstorage_.*",
 	"oci_psql_.*",
 	"oci_load_balancer_.*",
+	"oci_redis_.*",
 }
 
 // GetProvider returns provider configuration
@@ -106,6 +108,7 @@ func GetProvider() *ujconfig.Provider {
 		streaming.Configure,
 		mysql.Configure,
 		psql.Configure,
+		redis.Configure,
 	} {
 		configure(pc)
 	}
