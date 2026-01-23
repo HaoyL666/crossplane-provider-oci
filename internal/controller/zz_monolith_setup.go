@@ -135,6 +135,7 @@ import (
 	vault "github.com/oracle/provider-oci/internal/controller/kms/vault"
 	backend "github.com/oracle/provider-oci/internal/controller/loadbalancer/backend"
 	backendset "github.com/oracle/provider-oci/internal/controller/loadbalancer/backendset"
+	balancerbackendset "github.com/oracle/provider-oci/internal/controller/loadbalancer/balancerbackendset"
 	certificate "github.com/oracle/provider-oci/internal/controller/loadbalancer/certificate"
 	lbhostname "github.com/oracle/provider-oci/internal/controller/loadbalancer/lbhostname"
 	listener "github.com/oracle/provider-oci/internal/controller/loadbalancer/listener"
@@ -346,6 +347,7 @@ func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 		vault.Setup,
 		backend.Setup,
 		backendset.Setup,
+		balancerbackendset.Setup,
 		certificate.Setup,
 		lbhostname.Setup,
 		listener.Setup,

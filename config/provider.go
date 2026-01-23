@@ -63,6 +63,7 @@ var ServiceWildcards = []string{
 	"oci_mysql_.*",
 	"oci_objectstorage_.*",
 	"oci_psql_.*",
+	"oci_load_balancer_.*",
 }
 
 // GetProvider returns provider configuration
