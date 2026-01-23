@@ -843,6 +843,12 @@ type UrnietfparamsscimschemasoracleidcsextensionsocialIdentityProviderInitParame
 	// (Updatable) Admin scope to request
 	AdminScope []*string `json:"adminScope,omitempty" tf:"admin_scope,omitempty"`
 
+	// (Updatable) Apple Developer ID
+	AppleDevID *string `json:"appleDevId,omitempty" tf:"apple_dev_id,omitempty"`
+
+	// (Updatable) Apple Private Key ID
+	AppleKeyID *string `json:"appleKeyId,omitempty" tf:"apple_key_id,omitempty"`
+
 	// (Updatable) Social IDP Authorization URL
 	AuthzURL *string `json:"authzUrl,omitempty" tf:"authz_url,omitempty"`
 
@@ -905,6 +911,12 @@ type UrnietfparamsscimschemasoracleidcsextensionsocialIdentityProviderObservatio
 
 	// (Updatable) Admin scope to request
 	AdminScope []*string `json:"adminScope,omitempty" tf:"admin_scope,omitempty"`
+
+	// (Updatable) Apple Developer ID
+	AppleDevID *string `json:"appleDevId,omitempty" tf:"apple_dev_id,omitempty"`
+
+	// (Updatable) Apple Private Key ID
+	AppleKeyID *string `json:"appleKeyId,omitempty" tf:"apple_key_id,omitempty"`
 
 	// (Updatable) Social IDP Authorization URL
 	AuthzURL *string `json:"authzUrl,omitempty" tf:"authz_url,omitempty"`
@@ -971,6 +983,14 @@ type UrnietfparamsscimschemasoracleidcsextensionsocialIdentityProviderParameters
 	// (Updatable) Admin scope to request
 	// +kubebuilder:validation:Optional
 	AdminScope []*string `json:"adminScope,omitempty" tf:"admin_scope,omitempty"`
+
+	// (Updatable) Apple Developer ID
+	// +kubebuilder:validation:Optional
+	AppleDevID *string `json:"appleDevId,omitempty" tf:"apple_dev_id,omitempty"`
+
+	// (Updatable) Apple Private Key ID
+	// +kubebuilder:validation:Optional
+	AppleKeyID *string `json:"appleKeyId,omitempty" tf:"apple_key_id,omitempty"`
 
 	// (Updatable) Social IDP Authorization URL
 	// +kubebuilder:validation:Optional
