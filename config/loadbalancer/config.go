@@ -17,8 +17,8 @@
 package loadbalancer
 
 import (
-	"github.com/oracle/provider-oci/config/common"
 	"github.com/crossplane/upjet/pkg/config"
+	"github.com/oracle/provider-oci/config/common"
 )
 
 const (
@@ -133,6 +133,7 @@ func Configure(p *config.Provider) {
 		r.References["default_backend_set_name"] = config.Reference{
 			TerraformName: "oci_load_balancer_backend_set",
 		}
+		// Optional references
 		r.References["hostname_names"] = config.Reference{
 			TerraformName: "oci_load_balancer_hostname",
 		}
