@@ -61,6 +61,7 @@ var providerMetadata string
 
 var ServiceWildcards = []string{
 	"oci_identity_.*",
+	"oci_kms_.*",
 	"oci_mysql_.*",
 	"oci_network_load_balancer_.*",
 	"oci_objectstorage_.*",
@@ -75,6 +76,7 @@ func GetProvider() *ujconfig.Provider {
 		ujconfig.WithRootGroup("oci.upbound.io"),
 		// This will include manually configured resources + resources corresponding to services listed in wildcards
 		ujconfig.WithIncludeList(append(ExternalNameConfigured(), ServiceWildcards...)),
+		ujconfig.WithSkipList(ProblematicResources()),
 		ujconfig.WithDefaultResourceOptions(
 			GroupKindOverrides(),
 			ExternalNameConfigurations(),

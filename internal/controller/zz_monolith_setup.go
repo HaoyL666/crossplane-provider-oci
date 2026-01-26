@@ -130,12 +130,17 @@ import (
 	user "github.com/oracle/provider-oci/internal/controller/identity/user"
 	usercapabilitiesmanagement "github.com/oracle/provider-oci/internal/controller/identity/usercapabilitiesmanagement"
 	usergroupmembership "github.com/oracle/provider-oci/internal/controller/identity/usergroupmembership"
+	ekmsprivateendpoint "github.com/oracle/provider-oci/internal/controller/kms/ekmsprivateendpoint"
+	encrypteddata "github.com/oracle/provider-oci/internal/controller/kms/encrypteddata"
+	generatedkey "github.com/oracle/provider-oci/internal/controller/kms/generatedkey"
 	key "github.com/oracle/provider-oci/internal/controller/kms/key"
 	keyversion "github.com/oracle/provider-oci/internal/controller/kms/keyversion"
+	sign "github.com/oracle/provider-oci/internal/controller/kms/sign"
 	vault "github.com/oracle/provider-oci/internal/controller/kms/vault"
+	vaultreplication "github.com/oracle/provider-oci/internal/controller/kms/vaultreplication"
+	verify "github.com/oracle/provider-oci/internal/controller/kms/verify"
 	backend "github.com/oracle/provider-oci/internal/controller/loadbalancer/backend"
 	backendset "github.com/oracle/provider-oci/internal/controller/loadbalancer/backendset"
-	balancerbackendset "github.com/oracle/provider-oci/internal/controller/loadbalancer/balancerbackendset"
 	certificate "github.com/oracle/provider-oci/internal/controller/loadbalancer/certificate"
 	lbhostname "github.com/oracle/provider-oci/internal/controller/loadbalancer/lbhostname"
 	listener "github.com/oracle/provider-oci/internal/controller/loadbalancer/listener"
@@ -351,12 +356,17 @@ func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 		user.Setup,
 		usercapabilitiesmanagement.Setup,
 		usergroupmembership.Setup,
+		ekmsprivateendpoint.Setup,
+		encrypteddata.Setup,
+		generatedkey.Setup,
 		key.Setup,
 		keyversion.Setup,
+		sign.Setup,
 		vault.Setup,
+		vaultreplication.Setup,
+		verify.Setup,
 		backend.Setup,
 		backendset.Setup,
-		balancerbackendset.Setup,
 		certificate.Setup,
 		lbhostname.Setup,
 		listener.Setup,
