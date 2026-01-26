@@ -30,8 +30,10 @@ import (
 // These resources can be added to support later after resolving their specific issues.
 func ProblematicResources() []string {
 	return []string{
+		// OCI resources do not have a data section like AWS/GCP, so we do not need to specifically skip them.
+		// Explicity using `*_data_*` skips oci_identity_data_plane_* resources hence commenting it out.
 		// Skip data sources (not needed for managed resources)
-		`.*_data_.*`,
+		// `.*_data_.*`,
 
 		// Skip test resources (internal testing only)
 		`.*_test.*`,
@@ -43,6 +45,7 @@ func ProblematicResources() []string {
 		`oci_network_firewall_network_firewall_policy_service_list$`,     // Name collision: generates duplicate types
 		`oci_network_firewall_network_firewall_policy_url_list$`,         // Similar potential naming conflict
 		`oci_network_firewall_network_firewall_policy_application_list$`, // Similar potential naming conflict
+		`oci_load_balancer_backendset$`,                                  // Alias for oci_load_balancer_backend_set
 
 		// Add more specific resources here as we discover generation issues
 	}

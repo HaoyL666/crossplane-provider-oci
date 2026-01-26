@@ -75,6 +75,7 @@ func GetProvider() *ujconfig.Provider {
 		ujconfig.WithRootGroup("oci.upbound.io"),
 		// This will include manually configured resources + resources corresponding to services listed in wildcards
 		ujconfig.WithIncludeList(append(ExternalNameConfigured(), ServiceWildcards...)),
+		ujconfig.WithSkipList(ProblematicResources()),
 		ujconfig.WithDefaultResourceOptions(
 			GroupKindOverrides(),
 			ExternalNameConfigurations(),
