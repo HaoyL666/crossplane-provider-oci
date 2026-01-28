@@ -15,6 +15,8 @@ import (
 	v1alpha1certificatesmanagement "github.com/oracle/provider-oci/apis/certificatesmanagement/v1alpha1"
 	v1alpha1compute "github.com/oracle/provider-oci/apis/compute/v1alpha1"
 	v1alpha1containerengine "github.com/oracle/provider-oci/apis/containerengine/v1alpha1"
+	v1alpha1core "github.com/oracle/provider-oci/apis/core/v1alpha1"
+	v1alpha1database "github.com/oracle/provider-oci/apis/database/v1alpha1"
 	v1alpha1dns "github.com/oracle/provider-oci/apis/dns/v1alpha1"
 	v1alpha1events "github.com/oracle/provider-oci/apis/events/v1alpha1"
 	v1alpha1filestorage "github.com/oracle/provider-oci/apis/filestorage/v1alpha1"
@@ -48,6 +50,8 @@ func init() {
 		v1alpha1certificatesmanagement.SchemeBuilder.AddToScheme,
 		v1alpha1compute.SchemeBuilder.AddToScheme,
 		v1alpha1containerengine.SchemeBuilder.AddToScheme,
+		v1alpha1core.SchemeBuilder.AddToScheme,
+		v1alpha1database.SchemeBuilder.AddToScheme,
 		v1alpha1dns.SchemeBuilder.AddToScheme,
 		v1alpha1events.SchemeBuilder.AddToScheme,
 		v1alpha1filestorage.SchemeBuilder.AddToScheme,
