@@ -7,9 +7,7 @@ metadata:
 spec:
   forProvider:
     # ref: https://registry.terraform.io/providers/oracle/oci/7.27.0/docs/resources/kms_key
-    compartmentIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: compartment_label_1
+    compartmentId: "${COMPARTMENT_OCID}"
     displayName: key2
     keyShape:
     - algorithm: "RSA"
