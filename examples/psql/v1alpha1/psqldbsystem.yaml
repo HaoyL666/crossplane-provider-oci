@@ -25,7 +25,7 @@ spec:
       - isReaderEndpointEnabled: true
         subnetIdSelector:
           matchLabels:
-            testing.upbound.io/example-name: subnet_label_1
+            testing.upbound.io/example-name: subnet_label_2
 
     # Credentials are required to create a PSQL DB System.
     # Apply the following before creating an instance of db with your own credentials
