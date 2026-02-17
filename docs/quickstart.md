@@ -221,6 +221,9 @@ spec:
 EOF
 ```
 
+> [!NOTE]
+> If the provider configuration is incorrect (for example, wrong credentials or authentication settings), managed resources can report `READY=False` and `SYNCED=False` until the configuration is fixed.
+
 
 ## Create a managed resource
 
