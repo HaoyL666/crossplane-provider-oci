@@ -11,6 +11,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 
 	v1alpha1 "github.com/oracle/provider-oci/apis/artifacts/v1alpha1"
+	v1alpha1bastion "github.com/oracle/provider-oci/apis/bastion/v1alpha1"
 	v1alpha1blockstorage "github.com/oracle/provider-oci/apis/blockstorage/v1alpha1"
 	v1alpha1certificatesmanagement "github.com/oracle/provider-oci/apis/certificatesmanagement/v1alpha1"
 	v1alpha1compute "github.com/oracle/provider-oci/apis/compute/v1alpha1"
@@ -46,6 +47,7 @@ func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
+		v1alpha1bastion.SchemeBuilder.AddToScheme,
 		v1alpha1blockstorage.SchemeBuilder.AddToScheme,
 		v1alpha1certificatesmanagement.SchemeBuilder.AddToScheme,
 		v1alpha1compute.SchemeBuilder.AddToScheme,

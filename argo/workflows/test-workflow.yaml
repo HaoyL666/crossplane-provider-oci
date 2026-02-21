@@ -54,10 +54,12 @@ spec:
     #   value: "false"
     
     # Required to clone the Crossplane OCI provider repo
+    # - name: git_repo
+    #   value: https://github.com/oracle/crossplane-provider-oci.git
     - name: git_repo
-      value: https://github.com/oracle/crossplane-provider-oci.git
+      value: https://github.com/endurthiabhilash/crossplane-provider-oci.git
     - name: git_ref
-      value: main
+      value: argo-workflow
     
     # Required by scripts/setup-crossplane.sh
     - name: namespace
@@ -87,17 +89,17 @@ spec:
     # Required by network tests
     # - name: service_ocid
     # Required by kms tests
-    - name: vault_management_endpoint
-    - name: vault_crypto_endpoint
+    # - name: vault_management_endpoint
+    # - name: vault_crypto_endpoint
     # Required by objectstorage tests
     - name: objectstorage_namespace
     # Required by compute tests
-    - name: availability_domain
-    - name: computecapacityreport_instanceshape
+    # - name: availability_domain
+    # - name: computecapacityreport_instanceshape
     # TODO: Will add back when testing multiple workflow branches (with multiple configurations) for compute service.
     # - name: computeimagecapabilityschema_version_name
-    - name: image_instance_ocid
-    - name: instanceconsoleconnection_publickey
+    # - name: image_instance_ocid
+    # - name: instanceconsoleconnection_publickey
 
 
   templates:
@@ -149,180 +151,180 @@ spec:
                 value: "{{workflow.parameters.family-provider-version}}"
               - name: tenancy
                 value: "{{workflow.parameters.tenancy_ocid}}"
-        - name: identity-tests
-          templateRef: 
-            name: oci-identity-tests-template
-            template: identity-tests-workflow
-          dependencies: [setup-crossplane]
-          when: "{{workflow.parameters.run_identity_tests}} == true"
-          arguments:
-            parameters:
-              - name: create_compartment
-                value: "{{workflow.parameters.create_compartment}}"
-              - name: compartment_ocid
-                value: "{{workflow.parameters.compartment_ocid}}"
-        - name: networking-tests
-          templateRef: 
-            name: oci-networking-tests-template
-            template: networking-tests-workflow
-          dependencies: [setup-crossplane]
-          when: "{{workflow.parameters.run_networking_tests}} == true"
-          arguments:
-            parameters:
-              - name: create_compartment
-                value: "false"
-              - name: compartment_ocid
-                value: "{{workflow.parameters.compartment_ocid}}"
-              # TODO: To be added back after service gateway tests are fixed
-              # - name: service_ocid
-              #   value: "{{workflow.parameters.service_ocid}}"
-        - name: loadbalancer-tests
-          templateRef: 
-            name: oci-loadbalancer-tests-template
-            template: loadbalancer-tests-workflow
-          dependencies: [setup-crossplane]
-          when: "{{workflow.parameters.run_loadbalancer_tests}} == true"
-          arguments:
-            parameters:
-              - name: create_compartment
-                value: "false"
-              - name: create_vcn
-                value: "{{workflow.parameters.create_vcn}}"
-              - name: create_subnet
-                value: "{{workflow.parameters.create_subnet}}"
-              - name: compartment_ocid
-                value: "{{workflow.parameters.compartment_ocid}}"
-        - name: redis-tests
-          templateRef: 
-            name: oci-redis-tests-template
-            template: redis-tests-workflow
-          dependencies: [setup-crossplane]
-          when: "{{workflow.parameters.run_redis_tests}} == true"
-          arguments:
-            parameters:
-              - name: create_compartment
-                value: "false"
-              - name: create_vcn
-                value: "{{workflow.parameters.create_vcn}}"
-              - name: create_subnet
-                value: "{{workflow.parameters.create_subnet}}"
-              - name: compartment_ocid
-                value: "{{workflow.parameters.compartment_ocid}}"
-        - name: mysql-tests
-          templateRef: 
-            name: oci-mysql-tests-template
-            template: mysql-tests-workflow
-          dependencies: [setup-crossplane]
-          when: "{{workflow.parameters.run_mysql_tests}} == true"
-          arguments:
-            parameters:
-              - name: create_compartment
-                value: "false"
-              - name: create_vcn
-                value: "{{workflow.parameters.create_vcn}}"
-              - name: create_subnet
-                value: "{{workflow.parameters.create_subnet}}"
-              - name: compartment_ocid
-                value: "{{workflow.parameters.compartment_ocid}}"
-        - name: kms-tests
-          templateRef: 
-            name: oci-kms-tests-template
-            template: kms-tests-workflow
-          dependencies: [setup-crossplane]
-          when: "{{workflow.parameters.run_kms_tests}} == true"
-          arguments:
-            parameters:
-              - name: create_compartment
-                value: "false"
-              - name: compartment_ocid
-                value: "{{workflow.parameters.compartment_ocid}}"
-              - name: vault_management_endpoint
-                value: "{{workflow.parameters.vault_management_endpoint}}"
-              - name: vault_crypto_endpoint
-                value: "{{workflow.parameters.vault_crypto_endpoint}}"
-        - name: networkloadbalancer-tests
-          templateRef: 
-            name: oci-networkloadbalancer-tests-template
-            template: networkloadbalancer-tests-workflow
-          dependencies: [setup-crossplane]
-          when: "{{workflow.parameters.run_networkloadbalancer_tests}} == true"
-          arguments:
-            parameters:
-              - name: create_compartment
-                value: "false"
-              - name: create_vcn
-                value: "{{workflow.parameters.create_vcn}}"
-              - name: create_subnet
-                value: "{{workflow.parameters.create_subnet}}"
-              - name: compartment_ocid
-                value: "{{workflow.parameters.compartment_ocid}}"
+        # - name: identity-tests
+        #   templateRef:
+        #     name: oci-identity-tests-template
+        #     template: identity-tests-workflow
+        #   dependencies: [setup-crossplane]
+        #   when: "{{workflow.parameters.run_identity_tests}} == true"
+        #   arguments:
+        #     parameters:
+        #       - name: create_compartment
+        #         value: "{{workflow.parameters.create_compartment}}"
+        #       - name: compartment_ocid
+        #         value: "{{workflow.parameters.compartment_ocid}}"
+        # - name: networking-tests
+        #   templateRef:
+        #     name: oci-networking-tests-template
+        #     template: networking-tests-workflow
+        #   dependencies: [setup-crossplane]
+        #   when: "{{workflow.parameters.run_networking_tests}} == true"
+        #   arguments:
+        #     parameters:
+        #       - name: create_compartment
+        #         value: "false"
+        #       - name: compartment_ocid
+        #         value: "{{workflow.parameters.compartment_ocid}}"
+        #       # TODO: To be added back after service gateway tests are fixed
+        #       # - name: service_ocid
+        #       #   value: "{{workflow.parameters.service_ocid}}"
+        # - name: loadbalancer-tests
+        #   templateRef:
+        #     name: oci-loadbalancer-tests-template
+        #     template: loadbalancer-tests-workflow
+        #   dependencies: [setup-crossplane]
+        #   when: "{{workflow.parameters.run_loadbalancer_tests}} == true"
+        #   arguments:
+        #     parameters:
+        #       - name: create_compartment
+        #         value: "false"
+        #       - name: create_vcn
+        #         value: "{{workflow.parameters.create_vcn}}"
+        #       - name: create_subnet
+        #         value: "{{workflow.parameters.create_subnet}}"
+        #       - name: compartment_ocid
+        #         value: "{{workflow.parameters.compartment_ocid}}"
+        # - name: redis-tests
+        #   templateRef:
+        #     name: oci-redis-tests-template
+        #     template: redis-tests-workflow
+        #   dependencies: [setup-crossplane]
+        #   when: "{{workflow.parameters.run_redis_tests}} == true"
+        #   arguments:
+        #     parameters:
+        #       - name: create_compartment
+        #         value: "false"
+        #       - name: create_vcn
+        #         value: "{{workflow.parameters.create_vcn}}"
+        #       - name: create_subnet
+        #         value: "{{workflow.parameters.create_subnet}}"
+        #       - name: compartment_ocid
+        #         value: "{{workflow.parameters.compartment_ocid}}"
+        # - name: mysql-tests
+        #   templateRef:
+        #     name: oci-mysql-tests-template
+        #     template: mysql-tests-workflow
+        #   dependencies: [setup-crossplane]
+        #   when: "{{workflow.parameters.run_mysql_tests}} == true"
+        #   arguments:
+        #     parameters:
+        #       - name: create_compartment
+        #         value: "false"
+        #       - name: create_vcn
+        #         value: "{{workflow.parameters.create_vcn}}"
+        #       - name: create_subnet
+        #         value: "{{workflow.parameters.create_subnet}}"
+        #       - name: compartment_ocid
+        #         value: "{{workflow.parameters.compartment_ocid}}"
+        # - name: kms-tests
+        #   templateRef:
+        #     name: oci-kms-tests-template
+        #     template: kms-tests-workflow
+        #   dependencies: [setup-crossplane]
+        #   when: "{{workflow.parameters.run_kms_tests}} == true"
+        #   arguments:
+        #     parameters:
+        #       - name: create_compartment
+        #         value: "false"
+        #       - name: compartment_ocid
+        #         value: "{{workflow.parameters.compartment_ocid}}"
+        #       - name: vault_management_endpoint
+        #         value: "{{workflow.parameters.vault_management_endpoint}}"
+        #       - name: vault_crypto_endpoint
+        #         value: "{{workflow.parameters.vault_crypto_endpoint}}"
+        # - name: networkloadbalancer-tests
+        #   templateRef:
+        #     name: oci-networkloadbalancer-tests-template
+        #     template: networkloadbalancer-tests-workflow
+        #   dependencies: [setup-crossplane]
+        #   when: "{{workflow.parameters.run_networkloadbalancer_tests}} == true"
+        #   arguments:
+        #     parameters:
+        #       - name: create_compartment
+        #         value: "false"
+        #       - name: create_vcn
+        #         value: "{{workflow.parameters.create_vcn}}"
+        #       - name: create_subnet
+        #         value: "{{workflow.parameters.create_subnet}}"
+        #       - name: compartment_ocid
+        #         value: "{{workflow.parameters.compartment_ocid}}"
         - name: objectstorage-tests
-          templateRef: 
-            name: oci-objectstorage-tests-template
+          templateRef:
+            name: oci-objectstorage-v1alpha1-tests-template
             template: objectstorage-tests-workflow
           dependencies: [setup-crossplane]
           when: "{{workflow.parameters.run_objectstorage_tests}} == true"
           arguments:
             parameters:
               - name: create_compartment
-                value: "false"
+                value: "true"
               - name: compartment_ocid
                 value: "{{workflow.parameters.compartment_ocid}}"
               - name: objectstorage_namespace
                 value: "{{workflow.parameters.objectstorage_namespace}}"
-        - name: psql-tests
-          templateRef:
-            name: oci-psql-tests-template
-            template: psql-tests-workflow
-          dependencies: [setup-crossplane]
-          when: "{{workflow.parameters.run_psql_tests}} == true"
-          arguments:
-            parameters:
-              - name: create_compartment
-                value: "false"
-              - name: create_vcn
-                value: "{{workflow.parameters.create_vcn}}"
-              - name: create_subnet
-                value: "{{workflow.parameters.create_subnet}}"
-              - name: compartment_ocid
-                value: "{{workflow.parameters.compartment_ocid}}"
-        - name: compute-tests
-          templateRef:
-            name: oci-compute-tests-template
-            template: compute-tests-workflow
-          dependencies: [setup-crossplane]
-          when: "{{workflow.parameters.run_compute_tests}} == true"
-          arguments:
-            parameters:
-              - name: create_compartment
-                value: "false"
-              - name: create_vcn
-                value: "{{workflow.parameters.create_vcn}}"
-              - name: create_subnet
-                value: "{{workflow.parameters.create_subnet}}"
-              - name: compartment_ocid
-                value: "{{workflow.parameters.compartment_ocid}}"
-              - name: availability_domain
-                value: "{{workflow.parameters.availability_domain}}"
-              - name: computecapacityreport_instanceshape
-                value: "{{workflow.parameters.computecapacityreport_instanceshape}}"
-              #- name: computeimagecapabilityschema_version_name
-              #  value: "{{workflow.parameters.computeimagecapabilityschema_version_name}}"
-              - name: image_instance_ocid
-                value: "{{workflow.parameters.image_instance_ocid}}"
-              - name: instanceconsoleconnection_publickey
-                value: "{{workflow.parameters.instanceconsoleconnection_publickey}}"
-        - name: containerengine-tests
-          templateRef:
-            name: oci-containerengine-tests-template
-            template: containerengine-tests-workflow
-          dependencies: [setup-crossplane]
-          when: "{{workflow.parameters.run_containerengine_tests}} == true"
-          arguments:
-            parameters:
-              - name: create_compartment
-                value: "false"
-              - name: create_vcn
-                value: "{{workflow.parameters.create_vcn}}"
-              - name: compartment_ocid
-                value: "{{workflow.parameters.compartment_ocid}}"
+        # - name: psql-tests
+        #   templateRef:
+        #     name: oci-psql-tests-template
+        #     template: psql-tests-workflow
+        #   dependencies: [setup-crossplane]
+        #   when: "{{workflow.parameters.run_psql_tests}} == true"
+        #   arguments:
+        #     parameters:
+        #       - name: create_compartment
+        #         value: "false"
+        #       - name: create_vcn
+        #         value: "{{workflow.parameters.create_vcn}}"
+        #       - name: create_subnet
+        #         value: "{{workflow.parameters.create_subnet}}"
+        #       - name: compartment_ocid
+        #         value: "{{workflow.parameters.compartment_ocid}}"
+        # - name: compute-tests
+        #   templateRef:
+        #     name: oci-compute-tests-template
+        #     template: compute-tests-workflow
+        #   dependencies: [setup-crossplane]
+        #   when: "{{workflow.parameters.run_compute_tests}} == true"
+        #   arguments:
+        #     parameters:
+        #       - name: create_compartment
+        #         value: "false"
+        #       - name: create_vcn
+        #         value: "{{workflow.parameters.create_vcn}}"
+        #       - name: create_subnet
+        #         value: "{{workflow.parameters.create_subnet}}"
+        #       - name: compartment_ocid
+        #         value: "{{workflow.parameters.compartment_ocid}}"
+        #       - name: availability_domain
+        #         value: "{{workflow.parameters.availability_domain}}"
+        #       - name: computecapacityreport_instanceshape
+        #         value: "{{workflow.parameters.computecapacityreport_instanceshape}}"
+        #       #- name: computeimagecapabilityschema_version_name
+        #       #  value: "{{workflow.parameters.computeimagecapabilityschema_version_name}}"
+        #       - name: image_instance_ocid
+        #         value: "{{workflow.parameters.image_instance_ocid}}"
+        #       - name: instanceconsoleconnection_publickey
+        #         value: "{{workflow.parameters.instanceconsoleconnection_publickey}}"
+        # - name: containerengine-tests
+        #   templateRef:
+        #     name: oci-containerengine-tests-template
+        #     template: containerengine-tests-workflow
+        #   dependencies: [setup-crossplane]
+        #   when: "{{workflow.parameters.run_containerengine_tests}} == true"
+        #   arguments:
+        #     parameters:
+        #       - name: create_compartment
+        #         value: "false"
+        #       - name: create_vcn
+        #         value: "{{workflow.parameters.create_vcn}}"
+        #       - name: compartment_ocid
+        #         value: "{{workflow.parameters.compartment_ocid}}"

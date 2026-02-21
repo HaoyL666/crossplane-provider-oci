@@ -23,6 +23,7 @@ import (
 	ujconfig "github.com/crossplane/upjet/pkg/config"
 
 	"github.com/oracle/provider-oci/config/artifacts"
+	"github.com/oracle/provider-oci/config/bastion"
 	"github.com/oracle/provider-oci/config/certificatesmanagement"
 	"github.com/oracle/provider-oci/config/containerengine"
 	"github.com/oracle/provider-oci/config/core"
@@ -99,6 +100,7 @@ func GetProvider() *ujconfig.Provider {
 		kms.Configure,
 		containerengine.Configure,
 		artifacts.Configure,
+		bastion.Configure,
 		ons.Configure,
 		networkloadbalancer.Configure,
 		dns.Configure,
