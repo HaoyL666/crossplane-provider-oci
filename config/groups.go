@@ -242,6 +242,14 @@ var GroupMap = map[string]GroupKindCalculator{
 		return "identity", "IdentityProvider"
 	},
 
+	// Bastion Service
+	"oci_bastion_bastion": func(name string) (string, string) {
+		return "bastion", "Bastion"
+	},
+	"oci_bastion_session": func(name string) (string, string) {
+		return "bastion", "Session"
+	},
+
 	// Container Engine Service
 	"oci_containerengine_cluster": func(name string) (string, string) {
 		return "containerengine", "Cluster"
