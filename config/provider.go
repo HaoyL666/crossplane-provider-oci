@@ -23,6 +23,7 @@ import (
 	ujconfig "github.com/crossplane/upjet/pkg/config"
 
 	"github.com/oracle/provider-oci/config/artifacts"
+	"github.com/oracle/provider-oci/config/bastion"
 	"github.com/oracle/provider-oci/config/certificatesmanagement"
 	"github.com/oracle/provider-oci/config/containerengine"
 	"github.com/oracle/provider-oci/config/core"
@@ -118,6 +119,7 @@ func GetProvider() *ujconfig.Provider {
 		psql.Configure,
 		redis.Configure,
 		database.Configure,
+		bastion.Configure,
 	} {
 		configure(pc)
 	}
