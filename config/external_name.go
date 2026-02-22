@@ -17,8 +17,8 @@
 package config
 
 import (
-	"github.com/oracle/provider-oci/config/common"
 	"github.com/crossplane/upjet/pkg/config"
+	"github.com/oracle/provider-oci/config/common"
 )
 
 // ExternalNameConfigs contains all external name configurations for this
@@ -136,6 +136,8 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"oci_streaming_stream_pool":                                             config.IdentifierFromProvider,
 	"oci_streaming_connect_harness":                                         config.IdentifierFromProvider,
 	"oci_vault_secret":                                                      config.IdentifierFromProvider,
+	"oci_bastion_bastion":                                                   config.IdentifierFromProvider,
+	"oci_bastion_session":                                                   config.IdentifierFromProvider,
 	"oci_core_app_catalog_listing_resource_version_agreement":               config.IdentifierFromProvider,
 	"oci_core_app_catalog_subscription":                                     config.IdentifierFromProvider,
 	"oci_core_boot_volume":                                                  config.IdentifierFromProvider,
