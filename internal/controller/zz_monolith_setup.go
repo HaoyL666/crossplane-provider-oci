@@ -13,6 +13,8 @@ import (
 	containerrepository "github.com/oracle/provider-oci/internal/controller/artifacts/containerrepository"
 	genericartifact "github.com/oracle/provider-oci/internal/controller/artifacts/genericartifact"
 	repository "github.com/oracle/provider-oci/internal/controller/artifacts/repository"
+	bastion "github.com/oracle/provider-oci/internal/controller/bastion/bastion"
+	session "github.com/oracle/provider-oci/internal/controller/bastion/session"
 	bootvolume "github.com/oracle/provider-oci/internal/controller/blockstorage/bootvolume"
 	bootvolumebackup "github.com/oracle/provider-oci/internal/controller/blockstorage/bootvolumebackup"
 	volume "github.com/oracle/provider-oci/internal/controller/blockstorage/volume"
@@ -387,6 +389,8 @@ func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 		containerrepository.Setup,
 		genericartifact.Setup,
 		repository.Setup,
+		bastion.Setup,
+		session.Setup,
 		bootvolume.Setup,
 		bootvolumebackup.Setup,
 		volume.Setup,
