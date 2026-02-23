@@ -1206,6 +1206,27 @@ func (mg *AutonomousDatabase) ResolveReferences(ctx context.Context, c client.Re
 
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.EncryptionKey); i3++ {
 		{
+			m, l, err = apisresolver.GetManagedResource("apigateway.oci.upbound.io", "v1alpha1", "Certificate", "CertificateList")
+			if err != nil {
+				return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+			}
+			rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+				CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.EncryptionKey[i3].CertificateID),
+				Extract:      resource.ExtractResourceID(),
+				Reference:    mg.Spec.ForProvider.EncryptionKey[i3].CertificateIDRef,
+				Selector:     mg.Spec.ForProvider.EncryptionKey[i3].CertificateIDSelector,
+				To:           reference.To{List: l, Managed: m},
+			})
+		}
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.EncryptionKey[i3].CertificateID")
+		}
+		mg.Spec.ForProvider.EncryptionKey[i3].CertificateID = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.EncryptionKey[i3].CertificateIDRef = rsp.ResolvedReference
+
+	}
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.EncryptionKey); i3++ {
+		{
 			m, l, err = apisresolver.GetManagedResource("kms.oci.upbound.io", "v1alpha1", "Key", "KeyList")
 			if err != nil {
 				return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
@@ -1419,6 +1440,27 @@ func (mg *AutonomousDatabase) ResolveReferences(ctx context.Context, c client.Re
 	mg.Spec.InitProvider.CompartmentID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.CompartmentIDRef = rsp.ResolvedReference
 
+	for i3 := 0; i3 < len(mg.Spec.InitProvider.EncryptionKey); i3++ {
+		{
+			m, l, err = apisresolver.GetManagedResource("apigateway.oci.upbound.io", "v1alpha1", "Certificate", "CertificateList")
+			if err != nil {
+				return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+			}
+			rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+				CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.EncryptionKey[i3].CertificateID),
+				Extract:      resource.ExtractResourceID(),
+				Reference:    mg.Spec.InitProvider.EncryptionKey[i3].CertificateIDRef,
+				Selector:     mg.Spec.InitProvider.EncryptionKey[i3].CertificateIDSelector,
+				To:           reference.To{List: l, Managed: m},
+			})
+		}
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.InitProvider.EncryptionKey[i3].CertificateID")
+		}
+		mg.Spec.InitProvider.EncryptionKey[i3].CertificateID = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.InitProvider.EncryptionKey[i3].CertificateIDRef = rsp.ResolvedReference
+
+	}
 	for i3 := 0; i3 < len(mg.Spec.InitProvider.EncryptionKey); i3++ {
 		{
 			m, l, err = apisresolver.GetManagedResource("kms.oci.upbound.io", "v1alpha1", "Key", "KeyList")
@@ -2091,6 +2133,25 @@ func (mg *AutonomousVmClusterOrdsCertificateManagement) ResolveReferences(ctx co
 	mg.Spec.ForProvider.CertificateAuthorityID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.CertificateAuthorityIDRef = rsp.ResolvedReference
 	{
+		m, l, err = apisresolver.GetManagedResource("apigateway.oci.upbound.io", "v1alpha1", "Certificate", "CertificateList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.CertificateID),
+			Extract:      resource.ExtractResourceID(),
+			Reference:    mg.Spec.ForProvider.CertificateIDRef,
+			Selector:     mg.Spec.ForProvider.CertificateIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.CertificateID")
+	}
+	mg.Spec.ForProvider.CertificateID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.CertificateIDRef = rsp.ResolvedReference
+	{
 		m, l, err = apisresolver.GetManagedResource("database.oci.upbound.io", "v1alpha1", "AutonomousVmCluster", "AutonomousVmClusterList")
 		if err != nil {
 			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
@@ -2147,6 +2208,25 @@ func (mg *AutonomousVmClusterOrdsCertificateManagement) ResolveReferences(ctx co
 	}
 	mg.Spec.InitProvider.CertificateAuthorityID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.CertificateAuthorityIDRef = rsp.ResolvedReference
+	{
+		m, l, err = apisresolver.GetManagedResource("apigateway.oci.upbound.io", "v1alpha1", "Certificate", "CertificateList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.CertificateID),
+			Extract:      resource.ExtractResourceID(),
+			Reference:    mg.Spec.InitProvider.CertificateIDRef,
+			Selector:     mg.Spec.InitProvider.CertificateIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.CertificateID")
+	}
+	mg.Spec.InitProvider.CertificateID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.CertificateIDRef = rsp.ResolvedReference
 
 	return nil
 }
@@ -2217,6 +2297,25 @@ func (mg *AutonomousVmClusterSslCertificateManagement) ResolveReferences(ctx con
 	mg.Spec.ForProvider.CertificateAuthorityID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.CertificateAuthorityIDRef = rsp.ResolvedReference
 	{
+		m, l, err = apisresolver.GetManagedResource("apigateway.oci.upbound.io", "v1alpha1", "Certificate", "CertificateList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.CertificateID),
+			Extract:      resource.ExtractResourceID(),
+			Reference:    mg.Spec.ForProvider.CertificateIDRef,
+			Selector:     mg.Spec.ForProvider.CertificateIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.CertificateID")
+	}
+	mg.Spec.ForProvider.CertificateID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.CertificateIDRef = rsp.ResolvedReference
+	{
 		m, l, err = apisresolver.GetManagedResource("database.oci.upbound.io", "v1alpha1", "AutonomousVmCluster", "AutonomousVmClusterList")
 		if err != nil {
 			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
@@ -2273,6 +2372,25 @@ func (mg *AutonomousVmClusterSslCertificateManagement) ResolveReferences(ctx con
 	}
 	mg.Spec.InitProvider.CertificateAuthorityID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.CertificateAuthorityIDRef = rsp.ResolvedReference
+	{
+		m, l, err = apisresolver.GetManagedResource("apigateway.oci.upbound.io", "v1alpha1", "Certificate", "CertificateList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.CertificateID),
+			Extract:      resource.ExtractResourceID(),
+			Reference:    mg.Spec.InitProvider.CertificateIDRef,
+			Selector:     mg.Spec.InitProvider.CertificateIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.CertificateID")
+	}
+	mg.Spec.InitProvider.CertificateID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.CertificateIDRef = rsp.ResolvedReference
 
 	return nil
 }
@@ -5971,6 +6089,25 @@ func (mg *ExascaleDbStorageVault) ResolveReferences(ctx context.Context, c clien
 	var rsp reference.ResolutionResponse
 	var err error
 	{
+		m, l, err = apisresolver.GetManagedResource("clusterplacementgroups.oci.upbound.io", "v1alpha1", "ClusterPlacementGroup", "ClusterPlacementGroupList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ClusterPlacementGroupID),
+			Extract:      resource.ExtractResourceID(),
+			Reference:    mg.Spec.ForProvider.ClusterPlacementGroupIDRef,
+			Selector:     mg.Spec.ForProvider.ClusterPlacementGroupIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ClusterPlacementGroupID")
+	}
+	mg.Spec.ForProvider.ClusterPlacementGroupID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ClusterPlacementGroupIDRef = rsp.ResolvedReference
+	{
 		m, l, err = apisresolver.GetManagedResource("identity.oci.upbound.io", "v1alpha1", "Compartment", "CompartmentList")
 		if err != nil {
 			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
@@ -6008,6 +6145,25 @@ func (mg *ExascaleDbStorageVault) ResolveReferences(ctx context.Context, c clien
 	}
 	mg.Spec.ForProvider.ExadataInfrastructureID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.ExadataInfrastructureIDRef = rsp.ResolvedReference
+	{
+		m, l, err = apisresolver.GetManagedResource("clusterplacementgroups.oci.upbound.io", "v1alpha1", "ClusterPlacementGroup", "ClusterPlacementGroupList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ClusterPlacementGroupID),
+			Extract:      resource.ExtractResourceID(),
+			Reference:    mg.Spec.InitProvider.ClusterPlacementGroupIDRef,
+			Selector:     mg.Spec.InitProvider.ClusterPlacementGroupIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.ClusterPlacementGroupID")
+	}
+	mg.Spec.InitProvider.ClusterPlacementGroupID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.ClusterPlacementGroupIDRef = rsp.ResolvedReference
 	{
 		m, l, err = apisresolver.GetManagedResource("identity.oci.upbound.io", "v1alpha1", "Compartment", "CompartmentList")
 		if err != nil {
@@ -7424,6 +7580,29 @@ func (mg *ManagementAutonomousDatabaseAutonomousDatabaseDbmFeaturesManagement) R
 	mg.Spec.ForProvider.AutonomousDatabaseIDRef = rsp.ResolvedReference
 
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.FeatureDetails); i3++ {
+		for i4 := 0; i4 < len(mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails); i4++ {
+			{
+				m, l, err = apisresolver.GetManagedResource("managementagent.oci.upbound.io", "v1alpha1", "ManagementAgent", "ManagementAgentList")
+				if err != nil {
+					return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+				}
+				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+					CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID),
+					Extract:      resource.ExtractResourceID(),
+					Reference:    mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef,
+					Selector:     mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDSelector,
+					To:           reference.To{List: l, Managed: m},
+				})
+			}
+			if err != nil {
+				return errors.Wrap(err, "mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID")
+			}
+			mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID = reference.ToPtrValue(rsp.ResolvedValue)
+			mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef = rsp.ResolvedReference
+
+		}
+	}
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.FeatureDetails); i3++ {
 		for i4 := 0; i4 < len(mg.Spec.ForProvider.FeatureDetails[i3].DatabaseConnectionDetails); i4++ {
 			for i5 := 0; i5 < len(mg.Spec.ForProvider.FeatureDetails[i3].DatabaseConnectionDetails[i4].ConnectionCredentials); i5++ {
 				{
@@ -7492,6 +7671,29 @@ func (mg *ManagementAutonomousDatabaseAutonomousDatabaseDbmFeaturesManagement) R
 	mg.Spec.InitProvider.AutonomousDatabaseID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.AutonomousDatabaseIDRef = rsp.ResolvedReference
 
+	for i3 := 0; i3 < len(mg.Spec.InitProvider.FeatureDetails); i3++ {
+		for i4 := 0; i4 < len(mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails); i4++ {
+			{
+				m, l, err = apisresolver.GetManagedResource("managementagent.oci.upbound.io", "v1alpha1", "ManagementAgent", "ManagementAgentList")
+				if err != nil {
+					return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+				}
+				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+					CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID),
+					Extract:      resource.ExtractResourceID(),
+					Reference:    mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef,
+					Selector:     mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDSelector,
+					To:           reference.To{List: l, Managed: m},
+				})
+			}
+			if err != nil {
+				return errors.Wrap(err, "mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID")
+			}
+			mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID = reference.ToPtrValue(rsp.ResolvedValue)
+			mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef = rsp.ResolvedReference
+
+		}
+	}
 	for i3 := 0; i3 < len(mg.Spec.InitProvider.FeatureDetails); i3++ {
 		for i4 := 0; i4 < len(mg.Spec.InitProvider.FeatureDetails[i3].DatabaseConnectionDetails); i4++ {
 			for i5 := 0; i5 < len(mg.Spec.InitProvider.FeatureDetails[i3].DatabaseConnectionDetails[i4].ConnectionCredentials); i5++ {
@@ -8055,6 +8257,25 @@ func (mg *ManagementCloudDbSystemDiscovery) ResolveReferences(ctx context.Contex
 	var rsp reference.ResolutionResponse
 	var err error
 	{
+		m, l, err = apisresolver.GetManagedResource("cloudbridge.oci.upbound.io", "v1alpha1", "Agent", "AgentList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.AgentID),
+			Extract:      resource.ExtractResourceID(),
+			Reference:    mg.Spec.ForProvider.AgentIDRef,
+			Selector:     mg.Spec.ForProvider.AgentIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.AgentID")
+	}
+	mg.Spec.ForProvider.AgentID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.AgentIDRef = rsp.ResolvedReference
+	{
 		m, l, err = apisresolver.GetManagedResource("identity.oci.upbound.io", "v1alpha1", "Compartment", "CompartmentList")
 		if err != nil {
 			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
@@ -8073,6 +8294,25 @@ func (mg *ManagementCloudDbSystemDiscovery) ResolveReferences(ctx context.Contex
 	}
 	mg.Spec.ForProvider.CompartmentID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.CompartmentIDRef = rsp.ResolvedReference
+	{
+		m, l, err = apisresolver.GetManagedResource("cloudbridge.oci.upbound.io", "v1alpha1", "Agent", "AgentList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.AgentID),
+			Extract:      resource.ExtractResourceID(),
+			Reference:    mg.Spec.InitProvider.AgentIDRef,
+			Selector:     mg.Spec.InitProvider.AgentIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.AgentID")
+	}
+	mg.Spec.InitProvider.AgentID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.AgentIDRef = rsp.ResolvedReference
 	{
 		m, l, err = apisresolver.GetManagedResource("identity.oci.upbound.io", "v1alpha1", "Compartment", "CompartmentList")
 		if err != nil {
@@ -8175,6 +8415,29 @@ func (mg *ManagementDatabaseDbmFeaturesManagement) ResolveReferences(ctx context
 	mg.Spec.ForProvider.DatabaseIDRef = rsp.ResolvedReference
 
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.FeatureDetails); i3++ {
+		for i4 := 0; i4 < len(mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails); i4++ {
+			{
+				m, l, err = apisresolver.GetManagedResource("managementagent.oci.upbound.io", "v1alpha1", "ManagementAgent", "ManagementAgentList")
+				if err != nil {
+					return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+				}
+				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+					CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID),
+					Extract:      resource.ExtractResourceID(),
+					Reference:    mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef,
+					Selector:     mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDSelector,
+					To:           reference.To{List: l, Managed: m},
+				})
+			}
+			if err != nil {
+				return errors.Wrap(err, "mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID")
+			}
+			mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID = reference.ToPtrValue(rsp.ResolvedValue)
+			mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef = rsp.ResolvedReference
+
+		}
+	}
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.FeatureDetails); i3++ {
 		for i4 := 0; i4 < len(mg.Spec.ForProvider.FeatureDetails[i3].DatabaseConnectionDetails); i4++ {
 			for i5 := 0; i5 < len(mg.Spec.ForProvider.FeatureDetails[i3].DatabaseConnectionDetails[i4].ConnectionCredentials); i5++ {
 				{
@@ -8268,6 +8531,29 @@ func (mg *ManagementDatabaseDbmFeaturesManagement) ResolveReferences(ctx context
 	mg.Spec.InitProvider.DatabaseID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.DatabaseIDRef = rsp.ResolvedReference
 
+	for i3 := 0; i3 < len(mg.Spec.InitProvider.FeatureDetails); i3++ {
+		for i4 := 0; i4 < len(mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails); i4++ {
+			{
+				m, l, err = apisresolver.GetManagedResource("managementagent.oci.upbound.io", "v1alpha1", "ManagementAgent", "ManagementAgentList")
+				if err != nil {
+					return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+				}
+				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+					CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID),
+					Extract:      resource.ExtractResourceID(),
+					Reference:    mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef,
+					Selector:     mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDSelector,
+					To:           reference.To{List: l, Managed: m},
+				})
+			}
+			if err != nil {
+				return errors.Wrap(err, "mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID")
+			}
+			mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID = reference.ToPtrValue(rsp.ResolvedValue)
+			mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef = rsp.ResolvedReference
+
+		}
+	}
 	for i3 := 0; i3 < len(mg.Spec.InitProvider.FeatureDetails); i3++ {
 		for i4 := 0; i4 < len(mg.Spec.InitProvider.FeatureDetails[i3].DatabaseConnectionDetails); i4++ {
 			for i5 := 0; i5 < len(mg.Spec.InitProvider.FeatureDetails[i3].DatabaseConnectionDetails[i4].ConnectionCredentials); i5++ {
@@ -8894,6 +9180,25 @@ func (mg *ManagementExternalDbSystemDiscovery) ResolveReferences(ctx context.Con
 	var rsp reference.ResolutionResponse
 	var err error
 	{
+		m, l, err = apisresolver.GetManagedResource("cloudbridge.oci.upbound.io", "v1alpha1", "Agent", "AgentList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.AgentID),
+			Extract:      resource.ExtractResourceID(),
+			Reference:    mg.Spec.ForProvider.AgentIDRef,
+			Selector:     mg.Spec.ForProvider.AgentIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.AgentID")
+	}
+	mg.Spec.ForProvider.AgentID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.AgentIDRef = rsp.ResolvedReference
+	{
 		m, l, err = apisresolver.GetManagedResource("identity.oci.upbound.io", "v1alpha1", "Compartment", "CompartmentList")
 		if err != nil {
 			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
@@ -8912,6 +9217,25 @@ func (mg *ManagementExternalDbSystemDiscovery) ResolveReferences(ctx context.Con
 	}
 	mg.Spec.ForProvider.CompartmentID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.CompartmentIDRef = rsp.ResolvedReference
+	{
+		m, l, err = apisresolver.GetManagedResource("cloudbridge.oci.upbound.io", "v1alpha1", "Agent", "AgentList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.AgentID),
+			Extract:      resource.ExtractResourceID(),
+			Reference:    mg.Spec.InitProvider.AgentIDRef,
+			Selector:     mg.Spec.InitProvider.AgentIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.AgentID")
+	}
+	mg.Spec.InitProvider.AgentID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.AgentIDRef = rsp.ResolvedReference
 	{
 		m, l, err = apisresolver.GetManagedResource("identity.oci.upbound.io", "v1alpha1", "Compartment", "CompartmentList")
 		if err != nil {
@@ -9081,6 +9405,56 @@ func (mg *ManagementExternalExadataInfrastructureExadataManagement) ResolveRefer
 	}
 	mg.Spec.InitProvider.ExternalExadataInfrastructureID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.ExternalExadataInfrastructureIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
+// ResolveReferences of this ManagementExternalExadataStorageConnector.
+func (mg *ManagementExternalExadataStorageConnector) ResolveReferences(ctx context.Context, c client.Reader) error {
+	var m xpresource.Managed
+	var l xpresource.ManagedList
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+	{
+		m, l, err = apisresolver.GetManagedResource("cloudbridge.oci.upbound.io", "v1alpha1", "Agent", "AgentList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.AgentID),
+			Extract:      resource.ExtractResourceID(),
+			Reference:    mg.Spec.ForProvider.AgentIDRef,
+			Selector:     mg.Spec.ForProvider.AgentIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.AgentID")
+	}
+	mg.Spec.ForProvider.AgentID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.AgentIDRef = rsp.ResolvedReference
+	{
+		m, l, err = apisresolver.GetManagedResource("cloudbridge.oci.upbound.io", "v1alpha1", "Agent", "AgentList")
+		if err != nil {
+			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+		}
+
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.AgentID),
+			Extract:      resource.ExtractResourceID(),
+			Reference:    mg.Spec.InitProvider.AgentIDRef,
+			Selector:     mg.Spec.InitProvider.AgentIDSelector,
+			To:           reference.To{List: l, Managed: m},
+		})
+	}
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.AgentID")
+	}
+	mg.Spec.InitProvider.AgentID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.AgentIDRef = rsp.ResolvedReference
 
 	return nil
 }
@@ -9315,6 +9689,27 @@ func (mg *ManagementExternalMySqlDatabaseConnector) ResolveReferences(ctx contex
 
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.ConnectorDetails); i3++ {
 		{
+			m, l, err = apisresolver.GetManagedResource("cloudbridge.oci.upbound.io", "v1alpha1", "Agent", "AgentList")
+			if err != nil {
+				return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+			}
+			rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+				CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ConnectorDetails[i3].MacsAgentID),
+				Extract:      resource.ExtractResourceID(),
+				Reference:    mg.Spec.ForProvider.ConnectorDetails[i3].MacsAgentIDRef,
+				Selector:     mg.Spec.ForProvider.ConnectorDetails[i3].MacsAgentIDSelector,
+				To:           reference.To{List: l, Managed: m},
+			})
+		}
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.ConnectorDetails[i3].MacsAgentID")
+		}
+		mg.Spec.ForProvider.ConnectorDetails[i3].MacsAgentID = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.ConnectorDetails[i3].MacsAgentIDRef = rsp.ResolvedReference
+
+	}
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.ConnectorDetails); i3++ {
+		{
 			m, l, err = apisresolver.GetManagedResource("vault.oci.upbound.io", "v1alpha1", "Secret", "SecretList")
 			if err != nil {
 				return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
@@ -9353,6 +9748,27 @@ func (mg *ManagementExternalMySqlDatabaseConnector) ResolveReferences(ctx contex
 	mg.Spec.InitProvider.CompartmentID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.CompartmentIDRef = rsp.ResolvedReference
 
+	for i3 := 0; i3 < len(mg.Spec.InitProvider.ConnectorDetails); i3++ {
+		{
+			m, l, err = apisresolver.GetManagedResource("cloudbridge.oci.upbound.io", "v1alpha1", "Agent", "AgentList")
+			if err != nil {
+				return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+			}
+			rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+				CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ConnectorDetails[i3].MacsAgentID),
+				Extract:      resource.ExtractResourceID(),
+				Reference:    mg.Spec.InitProvider.ConnectorDetails[i3].MacsAgentIDRef,
+				Selector:     mg.Spec.InitProvider.ConnectorDetails[i3].MacsAgentIDSelector,
+				To:           reference.To{List: l, Managed: m},
+			})
+		}
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.InitProvider.ConnectorDetails[i3].MacsAgentID")
+		}
+		mg.Spec.InitProvider.ConnectorDetails[i3].MacsAgentID = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.InitProvider.ConnectorDetails[i3].MacsAgentIDRef = rsp.ResolvedReference
+
+	}
 	for i3 := 0; i3 < len(mg.Spec.InitProvider.ConnectorDetails); i3++ {
 		{
 			m, l, err = apisresolver.GetManagedResource("vault.oci.upbound.io", "v1alpha1", "Secret", "SecretList")
@@ -9455,12 +9871,35 @@ func (mg *ManagementExternalcontainerdatabaseExternalContainerDbmFeaturesManagem
 	}
 	mg.Spec.ForProvider.ExternalContainerDatabaseID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.ExternalContainerDatabaseIDRef = rsp.ResolvedReference
+
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.FeatureDetails); i3++ {
+		for i4 := 0; i4 < len(mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails); i4++ {
+			{
+				m, l, err = apisresolver.GetManagedResource("managementagent.oci.upbound.io", "v1alpha1", "ManagementAgent", "ManagementAgentList")
+				if err != nil {
+					return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+				}
+				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+					CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID),
+					Extract:      resource.ExtractResourceID(),
+					Reference:    mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef,
+					Selector:     mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDSelector,
+					To:           reference.To{List: l, Managed: m},
+				})
+			}
+			if err != nil {
+				return errors.Wrap(err, "mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID")
+			}
+			mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID = reference.ToPtrValue(rsp.ResolvedValue)
+			mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef = rsp.ResolvedReference
+
+		}
+	}
 	{
 		m, l, err = apisresolver.GetManagedResource("database.oci.upbound.io", "v1alpha1", "ExternalContainerDatabase", "ExternalContainerDatabaseList")
 		if err != nil {
 			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
 		}
-
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ExternalContainerDatabaseID),
 			Extract:      resource.ExtractResourceID(),
@@ -9474,6 +9913,30 @@ func (mg *ManagementExternalcontainerdatabaseExternalContainerDbmFeaturesManagem
 	}
 	mg.Spec.InitProvider.ExternalContainerDatabaseID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.ExternalContainerDatabaseIDRef = rsp.ResolvedReference
+
+	for i3 := 0; i3 < len(mg.Spec.InitProvider.FeatureDetails); i3++ {
+		for i4 := 0; i4 < len(mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails); i4++ {
+			{
+				m, l, err = apisresolver.GetManagedResource("managementagent.oci.upbound.io", "v1alpha1", "ManagementAgent", "ManagementAgentList")
+				if err != nil {
+					return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+				}
+				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+					CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID),
+					Extract:      resource.ExtractResourceID(),
+					Reference:    mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef,
+					Selector:     mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDSelector,
+					To:           reference.To{List: l, Managed: m},
+				})
+			}
+			if err != nil {
+				return errors.Wrap(err, "mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID")
+			}
+			mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID = reference.ToPtrValue(rsp.ResolvedValue)
+			mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef = rsp.ResolvedReference
+
+		}
+	}
 
 	return nil
 }
@@ -9505,12 +9968,35 @@ func (mg *ManagementExternalnoncontainerdatabaseExternalNonContainerDbmFeaturesM
 	}
 	mg.Spec.ForProvider.ExternalNonContainerDatabaseID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.ExternalNonContainerDatabaseIDRef = rsp.ResolvedReference
+
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.FeatureDetails); i3++ {
+		for i4 := 0; i4 < len(mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails); i4++ {
+			{
+				m, l, err = apisresolver.GetManagedResource("managementagent.oci.upbound.io", "v1alpha1", "ManagementAgent", "ManagementAgentList")
+				if err != nil {
+					return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+				}
+				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+					CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID),
+					Extract:      resource.ExtractResourceID(),
+					Reference:    mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef,
+					Selector:     mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDSelector,
+					To:           reference.To{List: l, Managed: m},
+				})
+			}
+			if err != nil {
+				return errors.Wrap(err, "mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID")
+			}
+			mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID = reference.ToPtrValue(rsp.ResolvedValue)
+			mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef = rsp.ResolvedReference
+
+		}
+	}
 	{
 		m, l, err = apisresolver.GetManagedResource("database.oci.upbound.io", "v1alpha1", "ExternalNonContainerDatabase", "ExternalNonContainerDatabaseList")
 		if err != nil {
 			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
 		}
-
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ExternalNonContainerDatabaseID),
 			Extract:      resource.ExtractResourceID(),
@@ -9524,6 +10010,30 @@ func (mg *ManagementExternalnoncontainerdatabaseExternalNonContainerDbmFeaturesM
 	}
 	mg.Spec.InitProvider.ExternalNonContainerDatabaseID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.ExternalNonContainerDatabaseIDRef = rsp.ResolvedReference
+
+	for i3 := 0; i3 < len(mg.Spec.InitProvider.FeatureDetails); i3++ {
+		for i4 := 0; i4 < len(mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails); i4++ {
+			{
+				m, l, err = apisresolver.GetManagedResource("managementagent.oci.upbound.io", "v1alpha1", "ManagementAgent", "ManagementAgentList")
+				if err != nil {
+					return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+				}
+				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+					CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID),
+					Extract:      resource.ExtractResourceID(),
+					Reference:    mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef,
+					Selector:     mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDSelector,
+					To:           reference.To{List: l, Managed: m},
+				})
+			}
+			if err != nil {
+				return errors.Wrap(err, "mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID")
+			}
+			mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID = reference.ToPtrValue(rsp.ResolvedValue)
+			mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef = rsp.ResolvedReference
+
+		}
+	}
 
 	return nil
 }
@@ -9555,12 +10065,35 @@ func (mg *ManagementExternalpluggabledatabaseExternalPluggableDbmFeaturesManagem
 	}
 	mg.Spec.ForProvider.ExternalPluggableDatabaseID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.ExternalPluggableDatabaseIDRef = rsp.ResolvedReference
+
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.FeatureDetails); i3++ {
+		for i4 := 0; i4 < len(mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails); i4++ {
+			{
+				m, l, err = apisresolver.GetManagedResource("managementagent.oci.upbound.io", "v1alpha1", "ManagementAgent", "ManagementAgentList")
+				if err != nil {
+					return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+				}
+				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+					CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID),
+					Extract:      resource.ExtractResourceID(),
+					Reference:    mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef,
+					Selector:     mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDSelector,
+					To:           reference.To{List: l, Managed: m},
+				})
+			}
+			if err != nil {
+				return errors.Wrap(err, "mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID")
+			}
+			mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID = reference.ToPtrValue(rsp.ResolvedValue)
+			mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef = rsp.ResolvedReference
+
+		}
+	}
 	{
 		m, l, err = apisresolver.GetManagedResource("database.oci.upbound.io", "v1alpha1", "ExternalPluggableDatabase", "ExternalPluggableDatabaseList")
 		if err != nil {
 			return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
 		}
-
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ExternalPluggableDatabaseID),
 			Extract:      resource.ExtractResourceID(),
@@ -9574,6 +10107,30 @@ func (mg *ManagementExternalpluggabledatabaseExternalPluggableDbmFeaturesManagem
 	}
 	mg.Spec.InitProvider.ExternalPluggableDatabaseID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.ExternalPluggableDatabaseIDRef = rsp.ResolvedReference
+
+	for i3 := 0; i3 < len(mg.Spec.InitProvider.FeatureDetails); i3++ {
+		for i4 := 0; i4 < len(mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails); i4++ {
+			{
+				m, l, err = apisresolver.GetManagedResource("managementagent.oci.upbound.io", "v1alpha1", "ManagementAgent", "ManagementAgentList")
+				if err != nil {
+					return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+				}
+				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+					CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID),
+					Extract:      resource.ExtractResourceID(),
+					Reference:    mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef,
+					Selector:     mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDSelector,
+					To:           reference.To{List: l, Managed: m},
+				})
+			}
+			if err != nil {
+				return errors.Wrap(err, "mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID")
+			}
+			mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID = reference.ToPtrValue(rsp.ResolvedValue)
+			mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef = rsp.ResolvedReference
+
+		}
+	}
 
 	return nil
 }
@@ -10133,6 +10690,29 @@ func (mg *ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagement) Res
 	var err error
 
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.FeatureDetails); i3++ {
+		for i4 := 0; i4 < len(mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails); i4++ {
+			{
+				m, l, err = apisresolver.GetManagedResource("managementagent.oci.upbound.io", "v1alpha1", "ManagementAgent", "ManagementAgentList")
+				if err != nil {
+					return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+				}
+				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+					CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID),
+					Extract:      resource.ExtractResourceID(),
+					Reference:    mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef,
+					Selector:     mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDSelector,
+					To:           reference.To{List: l, Managed: m},
+				})
+			}
+			if err != nil {
+				return errors.Wrap(err, "mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID")
+			}
+			mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID = reference.ToPtrValue(rsp.ResolvedValue)
+			mg.Spec.ForProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef = rsp.ResolvedReference
+
+		}
+	}
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.FeatureDetails); i3++ {
 		for i4 := 0; i4 < len(mg.Spec.ForProvider.FeatureDetails[i3].DatabaseConnectionDetails); i4++ {
 			for i5 := 0; i5 < len(mg.Spec.ForProvider.FeatureDetails[i3].DatabaseConnectionDetails[i4].ConnectionCredentials); i5++ {
 				{
@@ -10226,6 +10806,29 @@ func (mg *ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagement) Res
 	mg.Spec.ForProvider.PluggableDatabaseID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.PluggableDatabaseIDRef = rsp.ResolvedReference
 
+	for i3 := 0; i3 < len(mg.Spec.InitProvider.FeatureDetails); i3++ {
+		for i4 := 0; i4 < len(mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails); i4++ {
+			{
+				m, l, err = apisresolver.GetManagedResource("managementagent.oci.upbound.io", "v1alpha1", "ManagementAgent", "ManagementAgentList")
+				if err != nil {
+					return errors.Wrap(err, "failed to get the reference target managed resource and its list for reference resolution")
+				}
+				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+					CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID),
+					Extract:      resource.ExtractResourceID(),
+					Reference:    mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef,
+					Selector:     mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDSelector,
+					To:           reference.To{List: l, Managed: m},
+				})
+			}
+			if err != nil {
+				return errors.Wrap(err, "mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID")
+			}
+			mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentID = reference.ToPtrValue(rsp.ResolvedValue)
+			mg.Spec.InitProvider.FeatureDetails[i3].ConnectorDetails[i4].ManagementAgentIDRef = rsp.ResolvedReference
+
+		}
+	}
 	for i3 := 0; i3 < len(mg.Spec.InitProvider.FeatureDetails); i3++ {
 		for i4 := 0; i4 < len(mg.Spec.InitProvider.FeatureDetails[i3].DatabaseConnectionDetails); i4++ {
 			for i5 := 0; i5 < len(mg.Spec.InitProvider.FeatureDetails[i3].DatabaseConnectionDetails[i4].ConnectionCredentials); i5++ {

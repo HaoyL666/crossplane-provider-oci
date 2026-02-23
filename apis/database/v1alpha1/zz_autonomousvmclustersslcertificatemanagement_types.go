@@ -58,7 +58,17 @@ type AutonomousVmClusterSslCertificateManagementInitParameters struct {
 	CertificateGenerationType *string `json:"certificateGenerationType,omitempty" tf:"certificate_generation_type,omitempty"`
 
 	// The OCID of the certificate to use.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/apigateway/v1alpha1.Certificate
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	CertificateID *string `json:"certificateId,omitempty" tf:"certificate_id,omitempty"`
+
+	// Reference to a Certificate in apigateway to populate certificateId.
+	// +kubebuilder:validation:Optional
+	CertificateIDRef *v1.Reference `json:"certificateIdRef,omitempty" tf:"-"`
+
+	// Selector for a Certificate in apigateway to populate certificateId.
+	// +kubebuilder:validation:Optional
+	CertificateIDSelector *v1.Selector `json:"certificateIdSelector,omitempty" tf:"-"`
 }
 
 type AutonomousVmClusterSslCertificateManagementObservation struct {
@@ -130,8 +140,18 @@ type AutonomousVmClusterSslCertificateManagementParameters struct {
 	CertificateGenerationType *string `json:"certificateGenerationType,omitempty" tf:"certificate_generation_type,omitempty"`
 
 	// The OCID of the certificate to use.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/apigateway/v1alpha1.Certificate
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	CertificateID *string `json:"certificateId,omitempty" tf:"certificate_id,omitempty"`
+
+	// Reference to a Certificate in apigateway to populate certificateId.
+	// +kubebuilder:validation:Optional
+	CertificateIDRef *v1.Reference `json:"certificateIdRef,omitempty" tf:"-"`
+
+	// Selector for a Certificate in apigateway to populate certificateId.
+	// +kubebuilder:validation:Optional
+	CertificateIDSelector *v1.Selector `json:"certificateIdSelector,omitempty" tf:"-"`
 }
 
 // AutonomousVmClusterSslCertificateManagementSpec defines the desired state of AutonomousVmClusterSslCertificateManagement
