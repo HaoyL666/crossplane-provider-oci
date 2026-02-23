@@ -97,11 +97,14 @@ This is the traditional method using OCI API keys.
    --from-literal=credentials='{
    "tenancy_ocid": "REPLACE_WITH_YOUR_TENANCY_OCID",
    "user_ocid": "REPLACE_WITH_YOUR_USER_OCID",
-   "private_key": "REPLACE_WITH_YOUR_PRIVATE_KEY",
+   "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIE...REPLACE_WITH_YOUR_KEY_CONTENT...AB\n-----END RSA PRIVATE KEY-----\n",
    "fingerprint": "REPLACE_WITH_YOUR_FINGERPRINT",
-   "region": "REPLACE_WITH_YOUR_REGION"
+   "region": "REPLACE_WITH_YOUR_REGION",
+   "auth": "ApiKey"
    }'
    ```
+   `private_key` must be the full PEM private key with newline characters escaped as `\n` and a trailing newline at the end.
+   If your key content includes additional lines (for example, `OCI_API_KEY`), keep them inside the same quoted `private_key` value and escape each newline as `\n`.
    **Note:** Refer to `examples/providerconfig/secret.yaml.tmpl` for all available options. Additional reference [SDKConfig](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm).
 
 ### Instance Principal Authentication
