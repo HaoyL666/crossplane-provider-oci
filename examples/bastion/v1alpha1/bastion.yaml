@@ -9,14 +9,12 @@ spec:
     # Refer to following terraform example for brief resource fields
     # https://registry.terraform.io/providers/oracle/oci/7.27.0/docs/resources/bastion_bastion
     bastionType: "STANDARD"
-    # compartmentIdSelector:
-    #   matchLabels:
-    #     testing.upbound.io/example-name: compartment_label_1
-    compartmentId: ocid1.compartment.oc1..aaaaaaaa6xeqfnrxkdw7ktuuwnx4eisq7n6gbhqjvvaz44vq4tvrjp4a3ira
-    # targetSubnetIdSelector:
-    #   matchLabels:
-    #     testing.upbound.io/example-name: subnet_label_1
-    targetSubnetId: ocid1.subnet.oc1.iad.aaaaaaaahcs5rltmqbnzdib4yjlg6flvkk2v4amwwzvv6ut5qkq5w3jilklq
+    compartmentIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: compartment_label_1
+    targetSubnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: subnet_label_1
     name: bastion1
     clientCidrBlockAllowList:
       - "0.0.0.0/0"

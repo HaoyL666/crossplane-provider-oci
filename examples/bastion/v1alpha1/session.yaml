@@ -12,8 +12,8 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: bastion_label_1
     keyDetails:
-      - publicKeyContent: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+jMi62KZcCpH9goFRjh6actBl2qgeK+g5LLF8WPUtGB54izuYKjUzjjK1gmM0v8t0dI44esz0AB9x1lEznBKXUlSqbv8Dti48qnwzBC9udlGzonB71Rtnc/t8kkYFE+A3x4e0dyhhiHNAQjcTk95+vVYR1yVoFxiIy3RvinqQ1WRLsh85IyhgBIhIh75TyAK+bqJKDA7ITfT0yaugebbfHYv4dtzbu7yB2qZq6DBv/8GrMav8Nr5wEOMBXN9Y57sY51az8vh/OyMn2+F44F00ljyzJKZWFiZ0anK4Xvq5YULH1aK1P64hlW1p30+SSmilTawBIRtuN3gZsiR5xgsN ssh-key-2026-02-20"
+      - publicKeyContent: ${SSH_PUBLIC_KEY}
     targetResourceDetails:
       - sessionType: "PORT_FORWARDING"
-        targetResourceId: ocid1.instance.oc1.iad.anuwcljrsr3o6kact2u66r5tscuuflytvvil5vuvzolrdo4ikngz4rqcrasq
+        targetResourceId: ${TARGET_RESOURCE_OCID}
         targetResourcePort: 22
