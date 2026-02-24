@@ -1,0 +1,26 @@
+apiVersion: oce.oci.upbound.io/v1alpha1
+kind: OceInstance
+metadata:
+  labels:
+    testing.upbound.io/example-name: oce_instance_label_1
+  name: oce-instance1
+spec:
+  forProvider:
+    # Refer to following terraform example for brief resource fields
+    # https://registry.terraform.io/providers/oracle/oci/7.27.0/docs/resources/oce_oce_instance
+    adminEmail: haoyu.liu@oracle.com
+    # compartmentIdSelector:
+    #   matchLabels:
+    #     testing.upbound.io/example-name: compartment_label_1
+    compartmentId: ocid1.compartment.oc1..aaaaaaaa6xeqfnrxkdw7ktuuwnx4eisq7n6gbhqjvvaz44vq4tvrjp4a3ira
+    idcsAccessTokenSecretRef:
+      name: oce-idcs-secret
+      namespace: default
+      key: token
+    name: oce-instance1
+    objectStorageNamespace: iddevjmhjw0n
+    # tenancyIdSelector:
+    #   matchLabels:
+    #     testing.upbound.io/example-name: tenancy_label_1
+    tenancyId: ocid1.tenancy.oc1..aaaaaaaaav57fjc4abmdeqvnuwyh5tmi4on4guexsqd5zoxv2e46xu3cnbda
+    tenancyName: capocidev
