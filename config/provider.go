@@ -19,17 +19,14 @@ package config
 import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
-
 	"github.com/crossplane/upjet/pkg/config"
+	"github.com/crossplane/upjet/pkg/registry/reference"
 
-	"github.com/oracle/provider-oci/config/artifacts"
 	"github.com/oracle/provider-oci/config/certificatesmanagement"
 	"github.com/oracle/provider-oci/config/containerengine"
 	"github.com/oracle/provider-oci/config/core"
 	"github.com/oracle/provider-oci/config/database"
 	"github.com/oracle/provider-oci/config/dns"
-	"github.com/oracle/provider-oci/config/events"
-	"github.com/oracle/provider-oci/config/filestorage"
 	"github.com/oracle/provider-oci/config/functions"
 	"github.com/oracle/provider-oci/config/healthchecks"
 	"github.com/oracle/provider-oci/config/identity"
@@ -45,9 +42,6 @@ import (
 	"github.com/oracle/provider-oci/config/psql"
 	"github.com/oracle/provider-oci/config/redis"
 	"github.com/oracle/provider-oci/config/streaming"
-	"github.com/oracle/provider-oci/config/vault"
-
-	"github.com/crossplane/upjet/pkg/registry/reference"
 	"github.com/oracle/provider-oci/hack"
 )
 
@@ -94,7 +88,6 @@ func GetProvider() *config.Provider {
 		core.Configure,
 		kms.Configure,
 		containerengine.Configure,
-		artifacts.Configure,
 		ons.Configure,
 		networkloadbalancer.Configure,
 		dns.Configure,
@@ -105,9 +98,6 @@ func GetProvider() *config.Provider {
 		monitoring.Configure,
 		loadbalancer.Configure,
 		certificatesmanagement.Configure,
-		filestorage.Configure,
-		events.Configure,
-		vault.Configure,
 		streaming.Configure,
 		mysql.Configure,
 		psql.Configure,
