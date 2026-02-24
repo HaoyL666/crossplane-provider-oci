@@ -22,7 +22,17 @@ type ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagementFeatureDet
 	DatabaseConnectorID *string `json:"databaseConnectorId,omitempty" tf:"database_connector_id,omitempty"`
 
 	// (Applicable when connector_type=MACS) The OCID of the management agent.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/managementagent/v1alpha1.ManagementAgent
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	ManagementAgentID *string `json:"managementAgentId,omitempty" tf:"management_agent_id,omitempty"`
+
+	// Reference to a ManagementAgent in managementagent to populate managementAgentId.
+	// +kubebuilder:validation:Optional
+	ManagementAgentIDRef *v1.Reference `json:"managementAgentIdRef,omitempty" tf:"-"`
+
+	// Selector for a ManagementAgent in managementagent to populate managementAgentId.
+	// +kubebuilder:validation:Optional
+	ManagementAgentIDSelector *v1.Selector `json:"managementAgentIdSelector,omitempty" tf:"-"`
 
 	// (Applicable when connector_type=PE) The OCID of the private endpoint.
 	PrivateEndPointID *string `json:"privateEndPointId,omitempty" tf:"private_end_point_id,omitempty"`
@@ -54,8 +64,18 @@ type ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagementFeatureDet
 	DatabaseConnectorID *string `json:"databaseConnectorId,omitempty" tf:"database_connector_id,omitempty"`
 
 	// (Applicable when connector_type=MACS) The OCID of the management agent.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/managementagent/v1alpha1.ManagementAgent
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ManagementAgentID *string `json:"managementAgentId,omitempty" tf:"management_agent_id,omitempty"`
+
+	// Reference to a ManagementAgent in managementagent to populate managementAgentId.
+	// +kubebuilder:validation:Optional
+	ManagementAgentIDRef *v1.Reference `json:"managementAgentIdRef,omitempty" tf:"-"`
+
+	// Selector for a ManagementAgent in managementagent to populate managementAgentId.
+	// +kubebuilder:validation:Optional
+	ManagementAgentIDSelector *v1.Selector `json:"managementAgentIdSelector,omitempty" tf:"-"`
 
 	// (Applicable when connector_type=PE) The OCID of the private endpoint.
 	// +kubebuilder:validation:Optional
@@ -71,7 +91,17 @@ type ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagementFeatureDet
 	CredentialType *string `json:"credentialType,omitempty" tf:"credential_type,omitempty"`
 
 	// (Applicable when credential_type=NAMED_CREDENTIAL) The OCID of the Named Credential where the database password metadata is stored.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/database/v1alpha1.ManagementNamedCredential
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	NamedCredentialID *string `json:"namedCredentialId,omitempty" tf:"named_credential_id,omitempty"`
+
+	// Reference to a ManagementNamedCredential in database to populate namedCredentialId.
+	// +kubebuilder:validation:Optional
+	NamedCredentialIDRef *v1.Reference `json:"namedCredentialIdRef,omitempty" tf:"-"`
+
+	// Selector for a ManagementNamedCredential in database to populate namedCredentialId.
+	// +kubebuilder:validation:Optional
+	NamedCredentialIDSelector *v1.Selector `json:"namedCredentialIdSelector,omitempty" tf:"-"`
 
 	// (Applicable when credential_type=DETAILS | SSL_DETAILS) The OCID of the secret containing the user password.
 	PasswordSecretIDSecretRef *v1.SecretKeySelector `json:"passwordSecretIdSecretRef,omitempty" tf:"-"`
@@ -80,10 +110,30 @@ type ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagementFeatureDet
 	Role *string `json:"role,omitempty" tf:"role,omitempty"`
 
 	// (Applicable when credential_type=SSL_DETAILS) The OCID of the secret containing the SSL keystore and truststore details.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/vault/v1alpha1.Secret
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	SSLSecretID *string `json:"sslSecretId,omitempty" tf:"ssl_secret_id,omitempty"`
 
+	// Reference to a Secret in vault to populate sslSecretId.
+	// +kubebuilder:validation:Optional
+	SSLSecretIDRef *v1.Reference `json:"sslSecretIdRef,omitempty" tf:"-"`
+
+	// Selector for a Secret in vault to populate sslSecretId.
+	// +kubebuilder:validation:Optional
+	SSLSecretIDSelector *v1.Selector `json:"sslSecretIdSelector,omitempty" tf:"-"`
+
 	// (Applicable when credential_type=DETAILS | SSL_DETAILS) The user name used to connect to the database.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/identity/v1alpha1.User
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("name",false)
 	UserName *string `json:"userName,omitempty" tf:"user_name,omitempty"`
+
+	// Reference to a User in identity to populate userName.
+	// +kubebuilder:validation:Optional
+	UserNameRef *v1.Reference `json:"userNameRef,omitempty" tf:"-"`
+
+	// Selector for a User in identity to populate userName.
+	// +kubebuilder:validation:Optional
+	UserNameSelector *v1.Selector `json:"userNameSelector,omitempty" tf:"-"`
 }
 
 type ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagementFeatureDetailsDatabaseConnectionDetailsConnectionCredentialsObservation struct {
@@ -118,8 +168,18 @@ type ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagementFeatureDet
 	CredentialType *string `json:"credentialType,omitempty" tf:"credential_type,omitempty"`
 
 	// (Applicable when credential_type=NAMED_CREDENTIAL) The OCID of the Named Credential where the database password metadata is stored.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/database/v1alpha1.ManagementNamedCredential
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	NamedCredentialID *string `json:"namedCredentialId,omitempty" tf:"named_credential_id,omitempty"`
+
+	// Reference to a ManagementNamedCredential in database to populate namedCredentialId.
+	// +kubebuilder:validation:Optional
+	NamedCredentialIDRef *v1.Reference `json:"namedCredentialIdRef,omitempty" tf:"-"`
+
+	// Selector for a ManagementNamedCredential in database to populate namedCredentialId.
+	// +kubebuilder:validation:Optional
+	NamedCredentialIDSelector *v1.Selector `json:"namedCredentialIdSelector,omitempty" tf:"-"`
 
 	// (Applicable when credential_type=DETAILS | SSL_DETAILS) The OCID of the secret containing the user password.
 	// +kubebuilder:validation:Optional
@@ -130,12 +190,32 @@ type ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagementFeatureDet
 	Role *string `json:"role,omitempty" tf:"role,omitempty"`
 
 	// (Applicable when credential_type=SSL_DETAILS) The OCID of the secret containing the SSL keystore and truststore details.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/vault/v1alpha1.Secret
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	SSLSecretID *string `json:"sslSecretId,omitempty" tf:"ssl_secret_id,omitempty"`
 
+	// Reference to a Secret in vault to populate sslSecretId.
+	// +kubebuilder:validation:Optional
+	SSLSecretIDRef *v1.Reference `json:"sslSecretIdRef,omitempty" tf:"-"`
+
+	// Selector for a Secret in vault to populate sslSecretId.
+	// +kubebuilder:validation:Optional
+	SSLSecretIDSelector *v1.Selector `json:"sslSecretIdSelector,omitempty" tf:"-"`
+
 	// (Applicable when credential_type=DETAILS | SSL_DETAILS) The user name used to connect to the database.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/identity/v1alpha1.User
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("name",false)
 	// +kubebuilder:validation:Optional
 	UserName *string `json:"userName,omitempty" tf:"user_name,omitempty"`
+
+	// Reference to a User in identity to populate userName.
+	// +kubebuilder:validation:Optional
+	UserNameRef *v1.Reference `json:"userNameRef,omitempty" tf:"-"`
+
+	// Selector for a User in identity to populate userName.
+	// +kubebuilder:validation:Optional
+	UserNameSelector *v1.Selector `json:"userNameSelector,omitempty" tf:"-"`
 }
 
 type ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagementFeatureDetailsDatabaseConnectionDetailsConnectionStringInitParameters struct {
@@ -300,7 +380,17 @@ type ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagementInitParame
 	ModifyPluggableDatabaseDbmFeature *bool `json:"modifyPluggableDatabaseDbmFeature,omitempty" tf:"modify_pluggable_database_dbm_feature,omitempty"`
 
 	// The OCID of the Oracle cloud pluggable database.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/database/v1alpha1.PluggableDatabase
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	PluggableDatabaseID *string `json:"pluggableDatabaseId,omitempty" tf:"pluggable_database_id,omitempty"`
+
+	// Reference to a PluggableDatabase in database to populate pluggableDatabaseId.
+	// +kubebuilder:validation:Optional
+	PluggableDatabaseIDRef *v1.Reference `json:"pluggableDatabaseIdRef,omitempty" tf:"-"`
+
+	// Selector for a PluggableDatabase in database to populate pluggableDatabaseId.
+	// +kubebuilder:validation:Optional
+	PluggableDatabaseIDSelector *v1.Selector `json:"pluggableDatabaseIdSelector,omitempty" tf:"-"`
 }
 
 type ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagementObservation struct {
@@ -342,8 +432,18 @@ type ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagementParameters
 	ModifyPluggableDatabaseDbmFeature *bool `json:"modifyPluggableDatabaseDbmFeature,omitempty" tf:"modify_pluggable_database_dbm_feature,omitempty"`
 
 	// The OCID of the Oracle cloud pluggable database.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/database/v1alpha1.PluggableDatabase
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	PluggableDatabaseID *string `json:"pluggableDatabaseId,omitempty" tf:"pluggable_database_id,omitempty"`
+
+	// Reference to a PluggableDatabase in database to populate pluggableDatabaseId.
+	// +kubebuilder:validation:Optional
+	PluggableDatabaseIDRef *v1.Reference `json:"pluggableDatabaseIdRef,omitempty" tf:"-"`
+
+	// Selector for a PluggableDatabase in database to populate pluggableDatabaseId.
+	// +kubebuilder:validation:Optional
+	PluggableDatabaseIDSelector *v1.Selector `json:"pluggableDatabaseIdSelector,omitempty" tf:"-"`
 }
 
 // ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagementSpec defines the desired state of ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagement
@@ -383,7 +483,6 @@ type ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagement struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.enablePluggableDatabaseDbmFeature) || (has(self.initProvider) && has(self.initProvider.enablePluggableDatabaseDbmFeature))",message="spec.forProvider.enablePluggableDatabaseDbmFeature is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.pluggableDatabaseId) || (has(self.initProvider) && has(self.initProvider.pluggableDatabaseId))",message="spec.forProvider.pluggableDatabaseId is a required parameter"
 	Spec   ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagementSpec   `json:"spec"`
 	Status ManagementPluggabledatabasePluggableDatabaseDbmFeaturesManagementStatus `json:"status,omitempty"`
 }

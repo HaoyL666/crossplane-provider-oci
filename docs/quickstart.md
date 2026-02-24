@@ -84,39 +84,148 @@ spec:
 ```
 ## Configure family provider for OCI
 
-The official provider-family requires credentials to create and manage OCI resources.
+The official provider-family requires credentials to create and manage OCI resources. Choose one of the following authentication methods:
+
+### API Key Authentication
+
+This is the traditional method using OCI API keys.
+
 1. Create a secret by using the following command.
-    ```bash
-    kubectl create secret generic oci-creds \
-    --namespace=crossplane-system \
-    --from-literal=credentials='{
-    "tenancy_ocid": "REPLACE_WITH_YOUR_TENANCY_OCID",
-    "user_ocid": "REPLACE_WITH_YOUR_USER_OCID",
-    "private_key": "REPLACE_WITH_YOUR_PRIVATE_KEY",
-    "fingerprint": "REPLACE_WITH_YOUR_FINGERPRINT",
-    "region": "REPLACE_WITH_YOUR_REGION"
-    }'
-    ```
+   ```bash
+   kubectl create secret generic oci-creds \
+   --namespace=crossplane-system \
+   --from-literal=credentials='{
+   "tenancy_ocid": "REPLACE_WITH_YOUR_TENANCY_OCID",
+   "user_ocid": "REPLACE_WITH_YOUR_USER_OCID",
+   "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIE...REPLACE_WITH_YOUR_KEY_CONTENT...AB\n-----END RSA PRIVATE KEY-----\n",
+   "fingerprint": "REPLACE_WITH_YOUR_FINGERPRINT",
+   "region": "REPLACE_WITH_YOUR_REGION",
+   "auth": "ApiKey"
+   }'
+   ```
+   `private_key` must be the full PEM private key with newline characters escaped as `\n` and a trailing newline at the end.
+   If your key content includes additional lines (for example, `OCI_API_KEY`), keep them inside the same quoted `private_key` value and escape each newline as `\n`.
    **Note:** Refer to `examples/providerconfig/secret.yaml.tmpl` for all available options. Additional reference [SDKConfig](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm).
 
-2. Register the provider configuration by running this command.
-    ```bash
-    cat <<EOF | kubectl apply -f -
-    apiVersion: oci.upbound.io/v1beta1
-    kind: ProviderConfig
-    metadata:
-      name: default
-    spec:
-      credentials:
-        source: Secret
-        secretRef:
-          name: oci-creds
-          namespace: crossplane-system
-          key: credentials
-    EOF
-   
-    ```
-   **Note:** Modify the command, if the secret name registered is different than what is used earlier.
+### Instance Principal Authentication
+
+This method uses OCI Instance Principal for authentication when running on OCI compute instances.
+
+1. Create a secret by using the following command.
+   ```bash
+   kubectl create secret generic oci-creds \
+   --namespace=crossplane-system \
+   --from-literal=credentials='{
+   "tenancy_ocid": "REPLACE_WITH_YOUR_TENANCY_OCID",
+   "auth": "InstancePrincipal",
+   "region": "REPLACE_WITH_YOUR_REGION"
+   }'
+   ```
+
+### Workload Identity Authentication
+
+This method uses OCI Workload Identity for authentication in OKE environments.
+
+1. Create a service account for the provider.
+   ```bash
+   cat <<EOF | kubectl apply -f -
+   apiVersion: v1
+   kind: ServiceAccount
+   metadata:
+     name: crossplane-provider-oci
+     namespace: crossplane-system
+   EOF
+   ```
+
+2. Create the necessary IAM policies in OCI.
+
+   Create policies that allow the workload identity to access OCI resources. Example policy statement (replace placeholders with your values):
+
+   ```
+   Allow any-user to <verb> <resource> in <location> where all {
+   request.principal.type = 'workload',
+   request.principal.namespace = '<namespace-name>',
+   request.principal.service_account = '<service-account-name>',
+   request.principal.cluster_id = '<cluster-ocid>'}
+   ```
+
+3. Configure provider runtime and credentials for Workload Identity.
+
+   ```bash
+   cat <<EOF | kubectl apply -f -
+   ---
+   apiVersion: pkg.crossplane.io/v1beta1
+   kind: DeploymentRuntimeConfig
+   metadata:
+     name: oci-environment-config
+   spec:
+     deploymentTemplate:
+       spec:
+         selector: {}
+         template:
+           spec:
+             containers:
+               - name: package-runtime
+                 env:
+                   - name: OCI_RESOURCE_PRINCIPAL_VERSION # Set the required environment variables for Workload Identity
+                     value: "2.2"
+                   - name: OCI_RESOURCE_PRINCIPAL_REGION
+                     value: REPLACE_WITH_YOUR_REGION
+                   - name: OCI_RESOURCE_PRINCIPAL_WORKLOAD_IDENTITY
+                     value: "1"
+   ---
+   apiVersion: pkg.crossplane.io/v1
+   kind: Provider
+   metadata:
+     name: oracle-provider-family-oci
+   spec:
+     package: ghcr.io/oracle/provider-family-oci:v0.0.2
+     runtimeConfigRef:
+       name: oci-environment-config
+   ---
+   apiVersion: pkg.crossplane.io/v1
+   kind: Provider
+   metadata:
+     name: provider-oci-objectstorage
+   spec:
+     package: ghcr.io/oracle/provider-oci-objectstorage:v0.0.2
+     runtimeConfigRef:
+       name: oci-environment-config
+   ---
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: oci-creds
+     namespace: crossplane-system
+   type: Opaque
+   stringData:
+     credentials: |
+       {
+         "auth": "OKEWorkloadIdentity",
+         "region": "REPLACE_WITH_YOUR_REGION"
+       }
+   EOF
+   ```
+
+After choosing one authentication method above, register the provider configuration:
+```bash
+cat <<EOF | kubectl apply -f -
+apiVersion: oci.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: default
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      name: oci-creds
+      namespace: crossplane-system
+      key: credentials
+EOF
+```
+
+> [!NOTE]
+> If the provider configuration is incorrect (for example, wrong credentials or authentication settings), managed resources can report `READY=False` and `SYNCED=False` until the configuration is fixed.
 
 
 ## Create a managed resource

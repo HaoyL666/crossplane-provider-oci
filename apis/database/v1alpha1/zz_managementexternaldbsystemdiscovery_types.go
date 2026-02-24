@@ -734,10 +734,29 @@ type ManagementExternalDbSystemDiscoveryDiscoveredComponentsVipConfigurationsPar
 type ManagementExternalDbSystemDiscoveryInitParameters struct {
 
 	// The OCID of the management agent used for the external DB system discovery.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/cloudbridge/v1alpha1.Agent
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	AgentID *string `json:"agentId,omitempty" tf:"agent_id,omitempty"`
 
+	// Reference to a Agent in cloudbridge to populate agentId.
+	// +kubebuilder:validation:Optional
+	AgentIDRef *v1.Reference `json:"agentIdRef,omitempty" tf:"-"`
+
+	// Selector for a Agent in cloudbridge to populate agentId.
+	// +kubebuilder:validation:Optional
+	AgentIDSelector *v1.Selector `json:"agentIdSelector,omitempty" tf:"-"`
+
 	// The OCID of the compartment in which the external DB system resides.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/identity/v1alpha1.Compartment
 	CompartmentID *string `json:"compartmentId,omitempty" tf:"compartment_id,omitempty"`
+
+	// Reference to a Compartment in identity to populate compartmentId.
+	// +kubebuilder:validation:Optional
+	CompartmentIDRef *v1.Reference `json:"compartmentIdRef,omitempty" tf:"-"`
+
+	// Selector for a Compartment in identity to populate compartmentId.
+	// +kubebuilder:validation:Optional
+	CompartmentIDSelector *v1.Selector `json:"compartmentIdSelector,omitempty" tf:"-"`
 
 	// (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags. Example: {"Operations.CostCenter": "42"}
 	// +mapType=granular
@@ -810,12 +829,31 @@ type ManagementExternalDbSystemDiscoveryObservation struct {
 type ManagementExternalDbSystemDiscoveryParameters struct {
 
 	// The OCID of the management agent used for the external DB system discovery.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/cloudbridge/v1alpha1.Agent
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	AgentID *string `json:"agentId,omitempty" tf:"agent_id,omitempty"`
 
+	// Reference to a Agent in cloudbridge to populate agentId.
+	// +kubebuilder:validation:Optional
+	AgentIDRef *v1.Reference `json:"agentIdRef,omitempty" tf:"-"`
+
+	// Selector for a Agent in cloudbridge to populate agentId.
+	// +kubebuilder:validation:Optional
+	AgentIDSelector *v1.Selector `json:"agentIdSelector,omitempty" tf:"-"`
+
 	// The OCID of the compartment in which the external DB system resides.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/identity/v1alpha1.Compartment
 	// +kubebuilder:validation:Optional
 	CompartmentID *string `json:"compartmentId,omitempty" tf:"compartment_id,omitempty"`
+
+	// Reference to a Compartment in identity to populate compartmentId.
+	// +kubebuilder:validation:Optional
+	CompartmentIDRef *v1.Reference `json:"compartmentIdRef,omitempty" tf:"-"`
+
+	// Selector for a Compartment in identity to populate compartmentId.
+	// +kubebuilder:validation:Optional
+	CompartmentIDSelector *v1.Selector `json:"compartmentIdSelector,omitempty" tf:"-"`
 
 	// (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags. Example: {"Operations.CostCenter": "42"}
 	// +kubebuilder:validation:Optional
@@ -1203,10 +1241,8 @@ type ManagementExternalDbSystemDiscoveryStatus struct {
 type ManagementExternalDbSystemDiscovery struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.agentId) || (has(self.initProvider) && has(self.initProvider.agentId))",message="spec.forProvider.agentId is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.compartmentId) || (has(self.initProvider) && has(self.initProvider.compartmentId))",message="spec.forProvider.compartmentId is a required parameter"
-	Spec   ManagementExternalDbSystemDiscoverySpec   `json:"spec"`
-	Status ManagementExternalDbSystemDiscoveryStatus `json:"status,omitempty"`
+	Spec              ManagementExternalDbSystemDiscoverySpec   `json:"spec"`
+	Status            ManagementExternalDbSystemDiscoveryStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

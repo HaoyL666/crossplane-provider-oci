@@ -8,8 +8,12 @@ metadata:
   name: test-cloud-db-system-discovery
 spec:
   forProvider:
-    agentId: ${oci_cloud_bridge_agent.test_agent.id}
-    compartmentId: ${var.compartment_id}
+    agentIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: test_agent
+    compartmentIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     dbaasParentInfrastructureId: ${oci_database_management_dbaas_parent_infrastructure.test_dbaas_parent_infrastructure.id}
     definedTags:
       Operations.CostCenter: "42"
