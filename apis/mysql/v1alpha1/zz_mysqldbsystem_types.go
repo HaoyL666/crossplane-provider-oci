@@ -411,7 +411,17 @@ type MysqlDbSystemEncryptDataInitParameters struct {
 	KeyGenerationType *string `json:"keyGenerationType,omitempty" tf:"key_generation_type,omitempty"`
 
 	// (Updatable) The OCID of the key to use.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/kms/v1alpha1.Key
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	KeyID *string `json:"keyId,omitempty" tf:"key_id,omitempty"`
+
+	// Reference to a Key in kms to populate keyId.
+	// +kubebuilder:validation:Optional
+	KeyIDRef *v1.Reference `json:"keyIdRef,omitempty" tf:"-"`
+
+	// Selector for a Key in kms to populate keyId.
+	// +kubebuilder:validation:Optional
+	KeyIDSelector *v1.Selector `json:"keyIdSelector,omitempty" tf:"-"`
 }
 
 type MysqlDbSystemEncryptDataObservation struct {
@@ -430,8 +440,18 @@ type MysqlDbSystemEncryptDataParameters struct {
 	KeyGenerationType *string `json:"keyGenerationType" tf:"key_generation_type,omitempty"`
 
 	// (Updatable) The OCID of the key to use.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/kms/v1alpha1.Key
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	KeyID *string `json:"keyId,omitempty" tf:"key_id,omitempty"`
+
+	// Reference to a Key in kms to populate keyId.
+	// +kubebuilder:validation:Optional
+	KeyIDRef *v1.Reference `json:"keyIdRef,omitempty" tf:"-"`
+
+	// Selector for a Key in kms to populate keyId.
+	// +kubebuilder:validation:Optional
+	KeyIDSelector *v1.Selector `json:"keyIdSelector,omitempty" tf:"-"`
 }
 
 type MysqlDbSystemEndpointsInitParameters struct {
@@ -500,7 +520,17 @@ type MysqlDbSystemInitParameters struct {
 	CompartmentIDSelector *v1.Selector `json:"compartmentIdSelector,omitempty" tf:"-"`
 
 	// (Updatable) The OCID of the Configuration to be used for this DB System.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/audit/v1alpha1.Configuration
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	ConfigurationID *string `json:"configurationId,omitempty" tf:"configuration_id,omitempty"`
+
+	// Reference to a Configuration in audit to populate configurationId.
+	// +kubebuilder:validation:Optional
+	ConfigurationIDRef *v1.Reference `json:"configurationIdRef,omitempty" tf:"-"`
+
+	// Selector for a Configuration in audit to populate configurationId.
+	// +kubebuilder:validation:Optional
+	ConfigurationIDSelector *v1.Selector `json:"configurationIdSelector,omitempty" tf:"-"`
 
 	// (Updatable) Whether to run the DB System with InnoDB Redo Logs and the Double Write Buffer enabled or disabled, and whether to enable or disable syncing of the Binary Logs.
 	CrashRecovery *string `json:"crashRecovery,omitempty" tf:"crash_recovery,omitempty"`
@@ -846,8 +876,18 @@ type MysqlDbSystemParameters struct {
 	CompartmentIDSelector *v1.Selector `json:"compartmentIdSelector,omitempty" tf:"-"`
 
 	// (Updatable) The OCID of the Configuration to be used for this DB System.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/audit/v1alpha1.Configuration
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ConfigurationID *string `json:"configurationId,omitempty" tf:"configuration_id,omitempty"`
+
+	// Reference to a Configuration in audit to populate configurationId.
+	// +kubebuilder:validation:Optional
+	ConfigurationIDRef *v1.Reference `json:"configurationIdRef,omitempty" tf:"-"`
+
+	// Selector for a Configuration in audit to populate configurationId.
+	// +kubebuilder:validation:Optional
+	ConfigurationIDSelector *v1.Selector `json:"configurationIdSelector,omitempty" tf:"-"`
 
 	// (Updatable) Whether to run the DB System with InnoDB Redo Logs and the Double Write Buffer enabled or disabled, and whether to enable or disable syncing of the Binary Logs.
 	// +kubebuilder:validation:Optional
@@ -1067,7 +1107,17 @@ type MysqlDbSystemSecureConnectionsInitParameters struct {
 	CertificateGenerationType *string `json:"certificateGenerationType,omitempty" tf:"certificate_generation_type,omitempty"`
 
 	// (Updatable) The OCID of the certificate to use.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/apigateway/v1alpha1.Certificate
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	CertificateID *string `json:"certificateId,omitempty" tf:"certificate_id,omitempty"`
+
+	// Reference to a Certificate in apigateway to populate certificateId.
+	// +kubebuilder:validation:Optional
+	CertificateIDRef *v1.Reference `json:"certificateIdRef,omitempty" tf:"-"`
+
+	// Selector for a Certificate in apigateway to populate certificateId.
+	// +kubebuilder:validation:Optional
+	CertificateIDSelector *v1.Selector `json:"certificateIdSelector,omitempty" tf:"-"`
 }
 
 type MysqlDbSystemSecureConnectionsObservation struct {
@@ -1086,14 +1136,34 @@ type MysqlDbSystemSecureConnectionsParameters struct {
 	CertificateGenerationType *string `json:"certificateGenerationType" tf:"certificate_generation_type,omitempty"`
 
 	// (Updatable) The OCID of the certificate to use.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/apigateway/v1alpha1.Certificate
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	CertificateID *string `json:"certificateId,omitempty" tf:"certificate_id,omitempty"`
+
+	// Reference to a Certificate in apigateway to populate certificateId.
+	// +kubebuilder:validation:Optional
+	CertificateIDRef *v1.Reference `json:"certificateIdRef,omitempty" tf:"-"`
+
+	// Selector for a Certificate in apigateway to populate certificateId.
+	// +kubebuilder:validation:Optional
+	CertificateIDSelector *v1.Selector `json:"certificateIdSelector,omitempty" tf:"-"`
 }
 
 type MysqlDbSystemSourceInitParameters struct {
 
 	// The OCID of the backup to be used as the source for the new DB System.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/mysql/v1alpha1.MysqlBackup
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	BackupID *string `json:"backupId,omitempty" tf:"backup_id,omitempty"`
+
+	// Reference to a MysqlBackup in mysql to populate backupId.
+	// +kubebuilder:validation:Optional
+	BackupIDRef *v1.Reference `json:"backupIdRef,omitempty" tf:"-"`
+
+	// Selector for a MysqlBackup in mysql to populate backupId.
+	// +kubebuilder:validation:Optional
+	BackupIDSelector *v1.Selector `json:"backupIdSelector,omitempty" tf:"-"`
 
 	// The OCID of the DB System from which a backup shall be selected to be restored when creating the new DB System. Use this together with recovery point to perform a point in time recovery operation.
 	DBSystemID *string `json:"dbSystemId,omitempty" tf:"db_system_id,omitempty"`
@@ -1126,8 +1196,18 @@ type MysqlDbSystemSourceObservation struct {
 type MysqlDbSystemSourceParameters struct {
 
 	// The OCID of the backup to be used as the source for the new DB System.
+	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/mysql/v1alpha1.MysqlBackup
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	BackupID *string `json:"backupId,omitempty" tf:"backup_id,omitempty"`
+
+	// Reference to a MysqlBackup in mysql to populate backupId.
+	// +kubebuilder:validation:Optional
+	BackupIDRef *v1.Reference `json:"backupIdRef,omitempty" tf:"-"`
+
+	// Selector for a MysqlBackup in mysql to populate backupId.
+	// +kubebuilder:validation:Optional
+	BackupIDSelector *v1.Selector `json:"backupIdSelector,omitempty" tf:"-"`
 
 	// The OCID of the DB System from which a backup shall be selected to be restored when creating the new DB System. Use this together with recovery point to perform a point in time recovery operation.
 	// +kubebuilder:validation:Optional
