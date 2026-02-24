@@ -43,6 +43,7 @@ import (
 	"github.com/oracle/provider-oci/config/objectstorage"
 	"github.com/oracle/provider-oci/config/ons"
 	"github.com/oracle/provider-oci/config/psql"
+	"github.com/oracle/provider-oci/config/recovery"
 	"github.com/oracle/provider-oci/config/redis"
 	"github.com/oracle/provider-oci/config/streaming"
 	"github.com/oracle/provider-oci/config/vault"
@@ -113,6 +114,7 @@ func GetProvider() *config.Provider {
 		psql.Configure,
 		redis.Configure,
 		database.Configure,
+		recovery.Configure,
 	} {
 		configure(pc)
 	}
