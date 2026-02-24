@@ -8,15 +8,12 @@ spec:
   forProvider:
     # Refer to following terraform example for brief resource fields
     # https://registry.terraform.io/providers/oracle/oci/7.27.0/docs/resources/recovery_protected_database
-    # compartmentIdSelector:
-    #   matchLabels:
-    #     testing.upbound.io/example-name: compartment_label_1
-    compartmentId: ocid1.compartment.oc1..aaaaaaaa6xeqfnrxkdw7ktuuwnx4eisq7n6gbhqjvvaz44vq4tvrjp4a3ira
+    compartmentIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: compartment_label_1
     displayName: protected-database1
     dbUniqueName: TESTDB
-    # kubectl create secret generic protected-db-secret \
-    # --from-literal=password='DbPASS__22##' \
-    # -n default
+    # Create a secret with name protected-db-secret containing the password
     passwordSecretRef:
       name: protected-db-secret
       namespace: default
@@ -28,3 +25,4 @@ spec:
       - recoveryServiceSubnetIdSelector:
           matchLabels:
             testing.upbound.io/example-name: recovery_service_subnet_label_1
+            
