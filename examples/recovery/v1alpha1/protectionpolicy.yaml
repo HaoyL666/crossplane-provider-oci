@@ -2,8 +2,8 @@ apiVersion: recovery.oci.upbound.io/v1alpha1
 kind: ProtectionPolicy
 metadata:
   labels:
-    testing.upbound.io/example-name: protection_policy_label_1
-  name: protection-policy1
+    testing.upbound.io/example-name: protectionpolicy_label_1
+  name: protectionpolicy1
 spec:
   forProvider:
     # Refer to following terraform example for brief resource fields
@@ -11,6 +11,6 @@ spec:
     compartmentIdSelector:
       matchLabels:
         testing.upbound.io/example-name: compartment_label_1
-    displayName: protection-policy1
+    displayName: protectionpolicy1
     backupRetentionPeriodInDays: 30
     
