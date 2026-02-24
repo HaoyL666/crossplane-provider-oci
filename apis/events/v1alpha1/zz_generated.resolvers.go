@@ -9,6 +9,7 @@ package v1alpha1
 import (
 	"context"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
+	resource "github.com/crossplane/upjet/pkg/resource"
 
 	xpresource "github.com/crossplane/crossplane-runtime/pkg/resource"
 	errors "github.com/pkg/errors"
@@ -35,7 +36,7 @@ func (mg *Rule) ResolveReferences(ctx context.Context, c client.Reader) error {
 				}
 				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 					CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Actions[i3].Actions[i4].FunctionID),
-					Extract:      reference.ExternalName(),
+					Extract:      resource.ExtractResourceID(),
 					Reference:    mg.Spec.ForProvider.Actions[i3].Actions[i4].FunctionIDRef,
 					Selector:     mg.Spec.ForProvider.Actions[i3].Actions[i4].FunctionIDSelector,
 					To:           reference.To{List: l, Managed: m},
@@ -58,7 +59,7 @@ func (mg *Rule) ResolveReferences(ctx context.Context, c client.Reader) error {
 				}
 				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 					CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Actions[i3].Actions[i4].StreamID),
-					Extract:      reference.ExternalName(),
+					Extract:      resource.ExtractResourceID(),
 					Reference:    mg.Spec.ForProvider.Actions[i3].Actions[i4].StreamIDRef,
 					Selector:     mg.Spec.ForProvider.Actions[i3].Actions[i4].StreamIDSelector,
 					To:           reference.To{List: l, Managed: m},
@@ -81,7 +82,7 @@ func (mg *Rule) ResolveReferences(ctx context.Context, c client.Reader) error {
 				}
 				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 					CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Actions[i3].Actions[i4].TopicID),
-					Extract:      reference.ExternalName(),
+					Extract:      resource.ExtractResourceID(),
 					Reference:    mg.Spec.ForProvider.Actions[i3].Actions[i4].TopicIDRef,
 					Selector:     mg.Spec.ForProvider.Actions[i3].Actions[i4].TopicIDSelector,
 					To:           reference.To{List: l, Managed: m},
@@ -123,7 +124,7 @@ func (mg *Rule) ResolveReferences(ctx context.Context, c client.Reader) error {
 				}
 				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 					CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.Actions[i3].Actions[i4].FunctionID),
-					Extract:      reference.ExternalName(),
+					Extract:      resource.ExtractResourceID(),
 					Reference:    mg.Spec.InitProvider.Actions[i3].Actions[i4].FunctionIDRef,
 					Selector:     mg.Spec.InitProvider.Actions[i3].Actions[i4].FunctionIDSelector,
 					To:           reference.To{List: l, Managed: m},
@@ -146,7 +147,7 @@ func (mg *Rule) ResolveReferences(ctx context.Context, c client.Reader) error {
 				}
 				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 					CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.Actions[i3].Actions[i4].StreamID),
-					Extract:      reference.ExternalName(),
+					Extract:      resource.ExtractResourceID(),
 					Reference:    mg.Spec.InitProvider.Actions[i3].Actions[i4].StreamIDRef,
 					Selector:     mg.Spec.InitProvider.Actions[i3].Actions[i4].StreamIDSelector,
 					To:           reference.To{List: l, Managed: m},
@@ -169,7 +170,7 @@ func (mg *Rule) ResolveReferences(ctx context.Context, c client.Reader) error {
 				}
 				rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 					CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.Actions[i3].Actions[i4].TopicID),
-					Extract:      reference.ExternalName(),
+					Extract:      resource.ExtractResourceID(),
 					Reference:    mg.Spec.InitProvider.Actions[i3].Actions[i4].TopicIDRef,
 					Selector:     mg.Spec.InitProvider.Actions[i3].Actions[i4].TopicIDSelector,
 					To:           reference.To{List: l, Managed: m},

@@ -34,7 +34,7 @@ func (mg *Export) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ExportSetID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.ForProvider.ExportSetIDRef,
 			Selector:     mg.Spec.ForProvider.ExportSetIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -53,7 +53,7 @@ func (mg *Export) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.FileSystemID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.ForProvider.FileSystemIDRef,
 			Selector:     mg.Spec.ForProvider.FileSystemIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -72,7 +72,7 @@ func (mg *Export) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ExportSetID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.InitProvider.ExportSetIDRef,
 			Selector:     mg.Spec.InitProvider.ExportSetIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -91,7 +91,7 @@ func (mg *Export) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.FileSystemID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.InitProvider.FileSystemIDRef,
 			Selector:     mg.Spec.InitProvider.FileSystemIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -122,7 +122,7 @@ func (mg *ExportSet) ResolveReferences(ctx context.Context, c client.Reader) err
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.MountTargetID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.ForProvider.MountTargetIDRef,
 			Selector:     mg.Spec.ForProvider.MountTargetIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -141,7 +141,7 @@ func (mg *ExportSet) ResolveReferences(ctx context.Context, c client.Reader) err
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.MountTargetID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.InitProvider.MountTargetIDRef,
 			Selector:     mg.Spec.InitProvider.MountTargetIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -476,7 +476,7 @@ func (mg *MountTarget) ResolveReferences(ctx context.Context, c client.Reader) e
 		}
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SubnetID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.ForProvider.SubnetIDRef,
 			Selector:     mg.Spec.ForProvider.SubnetIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -535,7 +535,7 @@ func (mg *MountTarget) ResolveReferences(ctx context.Context, c client.Reader) e
 		}
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.SubnetID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.InitProvider.SubnetIDRef,
 			Selector:     mg.Spec.InitProvider.SubnetIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -673,7 +673,7 @@ func (mg *Replication) ResolveReferences(ctx context.Context, c client.Reader) e
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SourceID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.ForProvider.SourceIDRef,
 			Selector:     mg.Spec.ForProvider.SourceIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -692,7 +692,7 @@ func (mg *Replication) ResolveReferences(ctx context.Context, c client.Reader) e
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.TargetID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.ForProvider.TargetIDRef,
 			Selector:     mg.Spec.ForProvider.TargetIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -730,7 +730,7 @@ func (mg *Replication) ResolveReferences(ctx context.Context, c client.Reader) e
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.SourceID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.InitProvider.SourceIDRef,
 			Selector:     mg.Spec.InitProvider.SourceIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -749,7 +749,7 @@ func (mg *Replication) ResolveReferences(ctx context.Context, c client.Reader) e
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.TargetID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.InitProvider.TargetIDRef,
 			Selector:     mg.Spec.InitProvider.TargetIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -780,7 +780,7 @@ func (mg *Snapshot) ResolveReferences(ctx context.Context, c client.Reader) erro
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.FileSystemID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.ForProvider.FileSystemIDRef,
 			Selector:     mg.Spec.ForProvider.FileSystemIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -799,7 +799,7 @@ func (mg *Snapshot) ResolveReferences(ctx context.Context, c client.Reader) erro
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.FileSystemID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.InitProvider.FileSystemIDRef,
 			Selector:     mg.Spec.InitProvider.FileSystemIDSelector,
 			To:           reference.To{List: l, Managed: m},
