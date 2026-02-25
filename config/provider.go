@@ -27,19 +27,20 @@ import (
 	"github.com/oracle/provider-oci/config/core"
 	"github.com/oracle/provider-oci/config/database"
 	"github.com/oracle/provider-oci/config/dns"
+	"github.com/oracle/provider-oci/config/email"
 	"github.com/oracle/provider-oci/config/functions"
 	"github.com/oracle/provider-oci/config/healthchecks"
 	"github.com/oracle/provider-oci/config/identity"
 	"github.com/oracle/provider-oci/config/kms"
 	"github.com/oracle/provider-oci/config/loadbalancer"
-	"github.com/oracle/provider-oci/config/logging"
 	"github.com/oracle/provider-oci/config/monitoring"
 	"github.com/oracle/provider-oci/config/mysql"
 	"github.com/oracle/provider-oci/config/networkfirewall"
 	"github.com/oracle/provider-oci/config/networkloadbalancer"
+	"github.com/oracle/provider-oci/config/nosql"
 	"github.com/oracle/provider-oci/config/objectstorage"
-	"github.com/oracle/provider-oci/config/ons"
 	"github.com/oracle/provider-oci/config/psql"
+	"github.com/oracle/provider-oci/config/recovery"
 	"github.com/oracle/provider-oci/config/redis"
 	"github.com/oracle/provider-oci/config/streaming"
 	"github.com/oracle/provider-oci/hack"
@@ -94,7 +95,6 @@ func GetProvider() *config.Provider {
 		healthchecks.Configure,
 		functions.Configure,
 		networkfirewall.Configure,
-		logging.Configure,
 		monitoring.Configure,
 		loadbalancer.Configure,
 		certificatesmanagement.Configure,
@@ -103,6 +103,9 @@ func GetProvider() *config.Provider {
 		psql.Configure,
 		redis.Configure,
 		database.Configure,
+		recovery.Configure,
+		nosql.Configure,
+		email.Configure,
 	} {
 		configure(pc)
 	}
