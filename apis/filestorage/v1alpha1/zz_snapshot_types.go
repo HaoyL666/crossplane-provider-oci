@@ -24,6 +24,7 @@ type SnapshotInitParameters struct {
 
 	// The OCID of the file system to take a snapshot of.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/filestorage/v1alpha1.FileSystem
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	FileSystemID *string `json:"fileSystemId,omitempty" tf:"file_system_id,omitempty"`
 
 	// Reference to a FileSystem in filestorage to populate fileSystemId.
@@ -165,6 +166,7 @@ type SnapshotParameters struct {
 
 	// The OCID of the file system to take a snapshot of.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/filestorage/v1alpha1.FileSystem
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	FileSystemID *string `json:"fileSystemId,omitempty" tf:"file_system_id,omitempty"`
 

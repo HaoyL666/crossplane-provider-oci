@@ -23,6 +23,7 @@ type ActionsActionsInitParameters struct {
 
 	// (Applicable when action_type=FAAS) (Updatable) The OCID of a Function hosted by Oracle Functions Service.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/functions/v1alpha1.Function
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	FunctionID *string `json:"functionId,omitempty" tf:"function_id,omitempty"`
 
 	// Reference to a Function in functions to populate functionId.
@@ -38,6 +39,7 @@ type ActionsActionsInitParameters struct {
 
 	// (Updatable) The OCID of the stream to which messages are delivered.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/streaming/v1alpha1.Stream
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	StreamID *string `json:"streamId,omitempty" tf:"stream_id,omitempty"`
 
 	// Reference to a Stream in streaming to populate streamId.
@@ -50,6 +52,7 @@ type ActionsActionsInitParameters struct {
 
 	// (Applicable when action_type=ONS) (Updatable) The OCID of the topic to which messages are delivered.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/ons/v1alpha1.NotificationTopic
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	TopicID *string `json:"topicId,omitempty" tf:"topic_id,omitempty"`
 
 	// Reference to a NotificationTopic in ons to populate topicId.
@@ -103,6 +106,7 @@ type ActionsActionsParameters struct {
 
 	// (Applicable when action_type=FAAS) (Updatable) The OCID of a Function hosted by Oracle Functions Service.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/functions/v1alpha1.Function
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	FunctionID *string `json:"functionId,omitempty" tf:"function_id,omitempty"`
 
@@ -120,6 +124,7 @@ type ActionsActionsParameters struct {
 
 	// (Updatable) The OCID of the stream to which messages are delivered.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/streaming/v1alpha1.Stream
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	StreamID *string `json:"streamId,omitempty" tf:"stream_id,omitempty"`
 
@@ -133,6 +138,7 @@ type ActionsActionsParameters struct {
 
 	// (Applicable when action_type=ONS) (Updatable) The OCID of the topic to which messages are delivered.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/ons/v1alpha1.NotificationTopic
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	TopicID *string `json:"topicId,omitempty" tf:"topic_id,omitempty"`
 
