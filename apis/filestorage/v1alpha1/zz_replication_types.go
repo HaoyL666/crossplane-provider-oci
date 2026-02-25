@@ -48,6 +48,7 @@ type ReplicationInitParameters struct {
 
 	// The OCID of the source file system.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/filestorage/v1alpha1.FileSystem
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	SourceID *string `json:"sourceId,omitempty" tf:"source_id,omitempty"`
 
 	// Reference to a FileSystem in filestorage to populate sourceId.
@@ -60,6 +61,7 @@ type ReplicationInitParameters struct {
 
 	// The OCID of the target file system.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/filestorage/v1alpha1.FileSystem
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	TargetID *string `json:"targetId,omitempty" tf:"target_id,omitempty"`
 
 	// Reference to a FileSystem in filestorage to populate targetId.
@@ -227,6 +229,7 @@ type ReplicationParameters struct {
 
 	// The OCID of the source file system.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/filestorage/v1alpha1.FileSystem
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	SourceID *string `json:"sourceId,omitempty" tf:"source_id,omitempty"`
 
@@ -240,6 +243,7 @@ type ReplicationParameters struct {
 
 	// The OCID of the target file system.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/filestorage/v1alpha1.FileSystem
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	TargetID *string `json:"targetId,omitempty" tf:"target_id,omitempty"`
 

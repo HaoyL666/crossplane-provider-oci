@@ -53,7 +53,7 @@ func (mg *Secret) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.KeyID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.ForProvider.KeyIDRef,
 			Selector:     mg.Spec.ForProvider.KeyIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -160,7 +160,7 @@ func (mg *Secret) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.VaultID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.ForProvider.VaultIDRef,
 			Selector:     mg.Spec.ForProvider.VaultIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -198,7 +198,7 @@ func (mg *Secret) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.KeyID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.InitProvider.KeyIDRef,
 			Selector:     mg.Spec.InitProvider.KeyIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -305,7 +305,7 @@ func (mg *Secret) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.VaultID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.InitProvider.VaultIDRef,
 			Selector:     mg.Spec.InitProvider.VaultIDSelector,
 			To:           reference.To{List: l, Managed: m},

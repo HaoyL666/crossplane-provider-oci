@@ -9,6 +9,7 @@ package v1alpha1
 import (
 	"context"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
+	resource "github.com/crossplane/upjet/pkg/resource"
 
 	xpresource "github.com/crossplane/crossplane-runtime/pkg/resource"
 	apisresolver "github.com/oracle/provider-oci/internal/apis"
@@ -101,7 +102,7 @@ func (mg *Stream) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.StreamPoolID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.ForProvider.StreamPoolIDRef,
 			Selector:     mg.Spec.ForProvider.StreamPoolIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -139,7 +140,7 @@ func (mg *Stream) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.StreamPoolID),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractResourceID(),
 			Reference:    mg.Spec.InitProvider.StreamPoolIDRef,
 			Selector:     mg.Spec.InitProvider.StreamPoolIDSelector,
 			To:           reference.To{List: l, Managed: m},
@@ -191,7 +192,7 @@ func (mg *StreamPool) ResolveReferences(ctx context.Context, c client.Reader) er
 			}
 			rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 				CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.CustomEncryptionKey[i3].KMSKeyID),
-				Extract:      reference.ExternalName(),
+				Extract:      resource.ExtractResourceID(),
 				Reference:    mg.Spec.ForProvider.CustomEncryptionKey[i3].KMSKeyIDRef,
 				Selector:     mg.Spec.ForProvider.CustomEncryptionKey[i3].KMSKeyIDSelector,
 				To:           reference.To{List: l, Managed: m},
@@ -254,7 +255,7 @@ func (mg *StreamPool) ResolveReferences(ctx context.Context, c client.Reader) er
 			}
 			rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 				CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.PrivateEndpointSettings[i3].SubnetID),
-				Extract:      reference.ExternalName(),
+				Extract:      resource.ExtractResourceID(),
 				Reference:    mg.Spec.ForProvider.PrivateEndpointSettings[i3].SubnetIDRef,
 				Selector:     mg.Spec.ForProvider.PrivateEndpointSettings[i3].SubnetIDSelector,
 				To:           reference.To{List: l, Managed: m},
@@ -294,7 +295,7 @@ func (mg *StreamPool) ResolveReferences(ctx context.Context, c client.Reader) er
 			}
 			rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 				CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.CustomEncryptionKey[i3].KMSKeyID),
-				Extract:      reference.ExternalName(),
+				Extract:      resource.ExtractResourceID(),
 				Reference:    mg.Spec.InitProvider.CustomEncryptionKey[i3].KMSKeyIDRef,
 				Selector:     mg.Spec.InitProvider.CustomEncryptionKey[i3].KMSKeyIDSelector,
 				To:           reference.To{List: l, Managed: m},
@@ -357,7 +358,7 @@ func (mg *StreamPool) ResolveReferences(ctx context.Context, c client.Reader) er
 			}
 			rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 				CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.PrivateEndpointSettings[i3].SubnetID),
-				Extract:      reference.ExternalName(),
+				Extract:      resource.ExtractResourceID(),
 				Reference:    mg.Spec.InitProvider.PrivateEndpointSettings[i3].SubnetIDRef,
 				Selector:     mg.Spec.InitProvider.PrivateEndpointSettings[i3].SubnetIDSelector,
 				To:           reference.To{List: l, Managed: m},

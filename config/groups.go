@@ -419,31 +419,6 @@ var GroupMap = map[string]GroupKindCalculator{
 		return "certificatesmanagement", "CaBundle"
 	},
 
-	// File Storage Service
-	"oci_file_storage_file_system": func(name string) (string, string) {
-		return "filestorage", "FileSystem"
-	},
-	"oci_file_storage_mount_target": func(name string) (string, string) {
-		return "filestorage", "MountTarget"
-	},
-	"oci_file_storage_export_set": func(name string) (string, string) {
-		return "filestorage", "ExportSet"
-	},
-	"oci_file_storage_export": func(name string) (string, string) {
-		return "filestorage", "Export"
-	},
-	"oci_file_storage_replication": func(name string) (string, string) {
-		return "filestorage", "Replication"
-	},
-	"oci_file_storage_snapshot": func(name string) (string, string) {
-		return "filestorage", "Snapshot"
-	},
-
-	// Events Service
-	"oci_events_rule": func(name string) (string, string) {
-		return "events", "Rule"
-	},
-
 	// MySQL Service
 	"oci_mysql_backup":            func(name string) (string, string) { return "mysql", "MysqlBackup" },
 	"oci_mysql_channel":           func(name string) (string, string) { return "mysql", "MysqlChannel" },
@@ -456,22 +431,6 @@ var GroupMap = map[string]GroupKindCalculator{
 	"oci_psql_backup":        func(name string) (string, string) { return "psql", "PsqlBackup" },
 	"oci_psql_configuration": func(name string) (string, string) { return "psql", "PsqlConfiguration" },
 	"oci_psql_db_system":     func(name string) (string, string) { return "psql", "PsqlDbSystem" },
-
-	// Streaming Service
-	"oci_streaming_stream": func(name string) (string, string) {
-		return "streaming", "Stream"
-	},
-	"oci_streaming_stream_pool": func(name string) (string, string) {
-		return "streaming", "StreamPool"
-	},
-	"oci_streaming_connect_harness": func(name string) (string, string) {
-		return "streaming", "ConnectHarness"
-	},
-
-	// Vault Service
-	"oci_vault_secret": func(name string) (string, string) {
-		return "vault", "Secret"
-	},
 }
 
 // GroupKindOverrides applies the GroupMap during provider configuration
