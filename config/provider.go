@@ -22,12 +22,12 @@ import (
 
 	"github.com/crossplane/upjet/pkg/config"
 
-	"github.com/oracle/provider-oci/config/artifacts"
 	"github.com/oracle/provider-oci/config/certificatesmanagement"
 	"github.com/oracle/provider-oci/config/containerengine"
 	"github.com/oracle/provider-oci/config/core"
 	"github.com/oracle/provider-oci/config/database"
 	"github.com/oracle/provider-oci/config/dns"
+	"github.com/oracle/provider-oci/config/email"
 	"github.com/oracle/provider-oci/config/events"
 	"github.com/oracle/provider-oci/config/filestorage"
 	"github.com/oracle/provider-oci/config/functions"
@@ -41,8 +41,8 @@ import (
 	"github.com/oracle/provider-oci/config/networkfirewall"
 	"github.com/oracle/provider-oci/config/networkloadbalancer"
 	"github.com/oracle/provider-oci/config/objectstorage"
-	"github.com/oracle/provider-oci/config/ons"
 	"github.com/oracle/provider-oci/config/psql"
+	"github.com/oracle/provider-oci/config/recovery"
 	"github.com/oracle/provider-oci/config/redis"
 	"github.com/oracle/provider-oci/config/streaming"
 	"github.com/oracle/provider-oci/config/vault"
@@ -94,8 +94,6 @@ func GetProvider() *config.Provider {
 		core.Configure,
 		kms.Configure,
 		containerengine.Configure,
-		artifacts.Configure,
-		ons.Configure,
 		networkloadbalancer.Configure,
 		dns.Configure,
 		healthchecks.Configure,
@@ -113,6 +111,8 @@ func GetProvider() *config.Provider {
 		psql.Configure,
 		redis.Configure,
 		database.Configure,
+		recovery.Configure,
+		email.Configure,
 	} {
 		configure(pc)
 	}
