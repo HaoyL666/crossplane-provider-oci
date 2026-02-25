@@ -3,6 +3,12 @@ kind: WorkflowTemplate
 metadata:
   name: clone-repo-template
 spec:
+  serviceAccountName: argo-workflow
+  entrypoint: clone-repo
+  volumes:
+    - name: git-repo
+      persistentVolumeClaim:
+        claimName: git-repo-pvc
   templates:
     - name: check-contents
       container:
