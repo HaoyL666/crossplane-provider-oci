@@ -46,6 +46,7 @@ type StreamInitParameters struct {
 
 	// (Updatable) The OCID of the stream pool that contains the stream.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/streaming/v1alpha1.StreamPool
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	StreamPoolID *string `json:"streamPoolId,omitempty" tf:"stream_pool_id,omitempty"`
 
 	// Reference to a StreamPool in streaming to populate streamPoolId.
@@ -137,6 +138,7 @@ type StreamParameters struct {
 
 	// (Updatable) The OCID of the stream pool that contains the stream.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/streaming/v1alpha1.StreamPool
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	StreamPoolID *string `json:"streamPoolId,omitempty" tf:"stream_pool_id,omitempty"`
 

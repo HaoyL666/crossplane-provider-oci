@@ -26,6 +26,7 @@ type ExportSetInitParameters struct {
 
 	// (Updatable) The OCID of the mount target that the export set is associated with
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/filestorage/v1alpha1.MountTarget
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	MountTargetID *string `json:"mountTargetId,omitempty" tf:"mount_target_id,omitempty"`
 
 	// Reference to a MountTarget in filestorage to populate mountTargetId.
@@ -86,6 +87,7 @@ type ExportSetParameters struct {
 
 	// (Updatable) The OCID of the mount target that the export set is associated with
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/filestorage/v1alpha1.MountTarget
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	MountTargetID *string `json:"mountTargetId,omitempty" tf:"mount_target_id,omitempty"`
 

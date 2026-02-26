@@ -288,6 +288,7 @@ type SecretInitParameters struct {
 
 	// The OCID of the master encryption key that is used to encrypt the secret. You must specify a symmetric key to encrypt the secret during import to the vault. You cannot encrypt secrets with asymmetric keys. Furthermore, the key must exist in the vault that you specify.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/kms/v1alpha1.Key
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	KeyID *string `json:"keyId,omitempty" tf:"key_id,omitempty"`
 
 	// Reference to a Key in kms to populate keyId.
@@ -331,6 +332,7 @@ type SecretInitParameters struct {
 
 	// The OCID of the vault where you want to create the secret.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/kms/v1alpha1.Vault
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	VaultID *string `json:"vaultId,omitempty" tf:"vault_id,omitempty"`
 
 	// Reference to a Vault in kms to populate vaultId.
@@ -464,6 +466,7 @@ type SecretParameters struct {
 
 	// The OCID of the master encryption key that is used to encrypt the secret. You must specify a symmetric key to encrypt the secret during import to the vault. You cannot encrypt secrets with asymmetric keys. Furthermore, the key must exist in the vault that you specify.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/kms/v1alpha1.Key
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	KeyID *string `json:"keyId,omitempty" tf:"key_id,omitempty"`
 
@@ -515,6 +518,7 @@ type SecretParameters struct {
 
 	// The OCID of the vault where you want to create the secret.
 	// +crossplane:generate:reference:type=github.com/oracle/provider-oci/apis/kms/v1alpha1.Vault
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	VaultID *string `json:"vaultId,omitempty" tf:"vault_id,omitempty"`
 
