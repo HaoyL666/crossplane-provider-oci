@@ -52,16 +52,19 @@ jobs:
           if [ "${{ inputs.subpackages }}" = "all" ]; then
             echo "Checking examples-generated directory..."
             ls -la examples-generated/ | head -5
-            SERVICES_LIST=$(ls -d examples-generated/*/ 2>/dev/null | xargs basename | tr '\n' ',' | sed 's/,$//' || echo "")
+            SERVICES_LIST=$(ls -d examples-generated/*/ 2>/dev/null | xargs -n1 basename | tr '\n' ',' | sed 's/,$//' || echo "")
             echo "SERVICES_LIST length: ${#SERVICES_LIST}"
+            echo "SERVICES_LIST (first 200 chars): ${SERVICES_LIST:0:200}"
             SUBPACKAGES="config,$SERVICES_LIST"
-            echo "Final SUBPACKAGES length: ${#SUBPACKAGES}"
+            echo "After assignment - SUBPACKAGES length: ${#SUBPACKAGES}"
+            echo "After assignment - SUBPACKAGES (first 200 chars): ${SUBPACKAGES:0:200}"
           else
             SUBPACKAGES="${{ inputs.subpackages }}"
           fi
-          echo "Final SUBPACKAGES: $SUBPACKAGES"
+          echo "About to set outputs - SUBPACKAGES length: ${#SUBPACKAGES}"
           python3 -c "import math; print(f'indices={list(range(0, math.ceil(len(\"$SUBPACKAGES\".split(',')) / int(\"${{ inputs.size }}\"))))}')" >> "$GITHUB_OUTPUT"
           echo "subpackages=$SUBPACKAGES" >> "$GITHUB_OUTPUT"
+          echo "Workflow step completed successfully"
 
   publish-artifacts:
     strategy:
