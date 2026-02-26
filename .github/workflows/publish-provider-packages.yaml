@@ -48,10 +48,14 @@ jobs:
 
       - id: calc
         run: |
+          echo "Current working directory: $(pwd)"
           if [ "${{ inputs.subpackages }}" = "all" ]; then
-            SERVICES_LIST=$(ls -d examples-generated/*/ | xargs basename | tr '\n' ',' | sed 's/,$//')
+            echo "Checking examples-generated directory..."
+            ls -la examples-generated/ | head -5
+            SERVICES_LIST=$(ls -d examples-generated/*/ 2>/dev/null | xargs basename | tr '\n' ',' | sed 's/,$//' || echo "")
+            echo "SERVICES_LIST length: ${#SERVICES_LIST}"
             SUBPACKAGES="config,$SERVICES_LIST"
-            echo "Services from examples-generated: $SERVICES_LIST"
+            echo "Final SUBPACKAGES length: ${#SUBPACKAGES}"
           else
             SUBPACKAGES="${{ inputs.subpackages }}"
           fi
