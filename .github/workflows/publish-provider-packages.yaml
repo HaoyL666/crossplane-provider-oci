@@ -49,10 +49,13 @@ jobs:
       - id: calc
         run: |
           if [ "${{ inputs.subpackages }}" = "all" ]; then
-            SUBPACKAGES="config,"$(ls -d examples-generated/*/ | xargs basename | tr '\n' ',' | sed 's/,$//')
+            SERVICES_LIST=$(ls -d examples-generated/*/ | xargs basename | tr '\n' ',' | sed 's/,$//')
+            SUBPACKAGES="config,$SERVICES_LIST"
+            echo "Services from examples-generated: $SERVICES_LIST"
           else
             SUBPACKAGES="${{ inputs.subpackages }}"
           fi
+          echo "Final SUBPACKAGES: $SUBPACKAGES"
           python3 -c "import math; print(f'indices={list(range(0, math.ceil(len(\"$SUBPACKAGES\".split(',')) / int(\"${{ inputs.size }}\"))))}')" >> "$GITHUB_OUTPUT"
           echo "subpackages=$SUBPACKAGES" >> "$GITHUB_OUTPUT"
 
