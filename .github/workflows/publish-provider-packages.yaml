@@ -35,7 +35,7 @@ env:
   UP_VERSION: 'v0.37.1'
 
   # Registry/Org names
-  CROSSPLANE_REGORG: 'ghcr.io/${{ github.repository_owner }}' # xpkg.crossplane.io/crossplane-contrib
+  CROSSPLANE_REGORG: 'ghcr.io/haoyl666' # xpkg.crossplane.io/crossplane-contrib
 jobs:
   index:
     runs-on: ubuntu-latest
