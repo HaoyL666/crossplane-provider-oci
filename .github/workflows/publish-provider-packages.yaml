@@ -126,7 +126,8 @@ jobs:
       - name: Calculate packages to build & push
         id: packages
         run: |
-          echo target=$(python3 -c "print(' '.join(\"${{ needs.index.outputs.subpackages }}\".split(',')[int(\"${{ matrix.index }}\") * int(\"${{ inputs.size }}\"): (int(\"${{ matrix.index }}\")+1) * int(\"${{ inputs.size }}\")]))") >> "$GITHUB_OUTPUT"
+          PACKAGES_BATCH=$(python3 -c "print(','.join(\"${{ needs.index.outputs.subpackages }}\".split(',')[int(\"${{ matrix.index }}\") * int(\"${{ inputs.size }}\"): (int(\"${{ matrix.index }}\")+1) * int(\"${{ inputs.size }}\")]))")
+          echo "packages_batch=$PACKAGES_BATCH" >> "$GITHUB_OUTPUT"
 
       - name: Build Artifacts
         id: build_artifacts
@@ -141,4 +142,4 @@ jobs:
 
       - name: Publish Artifacts
         run: |
-          make SUBPACKAGES_FOR_BATCH="${{ needs.index.outputs.subpackages }}" XPKG_REG_ORGS="${{ env.CROSSPLANE_REGORG }}" VERSION=${{ inputs.version }} BATCH_PLATFORMS="$(echo ${{ inputs.platform }} | tr ' ' ',')" publish-subpackages
+          make SUBPACKAGES_FOR_BATCH="${{ steps.packages.outputs.packages_batch }}" XPKG_REG_ORGS="${{ env.CROSSPLANE_REGORG }}" VERSION=${{ inputs.version }} BATCH_PLATFORMS="$(echo ${{ inputs.platform }} | tr ' ' ',')" publish-subpackages
