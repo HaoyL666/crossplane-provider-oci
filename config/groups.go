@@ -196,6 +196,9 @@ var GroupMap = map[string]GroupKindCalculator{
 	"oci_core_drg_route_distribution_statement": func(name string) (string, string) {
 		return "networkconnectivity", "DrgRouteDistributionStatement"
 	},
+	"oci_core_default_drg_route_table": func(name string) (string, string) {
+		return "networkconnectivity", "DefaultDrgRouteTable"
+	},
 	"oci_core_drg_route_table": func(name string) (string, string) {
 		return "networkconnectivity", "DrgRouteTable"
 	},
