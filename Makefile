@@ -8,7 +8,7 @@ export TERRAFORM_VERSION := 1.4.6
 
 export TERRAFORM_PROVIDER_SOURCE := oracle/oci
 export TERRAFORM_PROVIDER_REPO := https://github.com/oracle/terraform-provider-oci
-export TERRAFORM_PROVIDER_VERSION := 8.22.0
+export TERRAFORM_PROVIDER_VERSION := 8.23.0
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-oci
 export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-oci_v$(TERRAFORM_PROVIDER_VERSION)
 export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX := https://releases.hashicorp.com/terraform-provider-oci/$(TERRAFORM_PROVIDER_VERSION)
@@ -215,7 +215,22 @@ pull-docs:
 	fi
 	@git -C "$(WORK_DIR)/$(TERRAFORM_PROVIDER_SOURCE)" sparse-checkout set "$(TERRAFORM_DOCS_PATH)"
 
-generate.init: $(TERRAFORM_PROVIDER_SCHEMA) pull-docs
+# Go resolves every package and snapshots its source file list before executing
+# any go:generate directive. Clean generated files in a separate make process so
+# resource moves do not leave go generate trying to read a deleted source path.
+generate.clean:
+	@$(INFO) cleaning generated files
+	@rm -rf package/crds
+	@find apis -iname 'zz_*' -delete
+	@find apis -type d -empty -delete
+	@find internal/controller -iname 'zz_*' -delete
+	@find internal/controller -type d -empty -delete
+	@find cmd/provider -name 'zz_*' -type f -delete
+	@find cmd/provider -type d -maxdepth 1 -mindepth 1 -empty -delete
+	@rm -rf examples-generated
+	@$(OK) cleaning generated files
+
+generate.init: $(TERRAFORM_PROVIDER_SCHEMA) pull-docs generate.clean
 
 # Transform resolver references to use scheme-based resolution for sub-package architecture
 generate.resolve: generate
@@ -229,7 +244,7 @@ build.complete: generate.resolve build
 	@$(INFO) complete build workflow finished
 	@$(OK) complete build workflow finished
 
-.PHONY: $(TERRAFORM_PROVIDER_SCHEMA) pull-docs generate.resolve build.complete
+.PHONY: $(TERRAFORM_PROVIDER_SCHEMA) pull-docs generate.clean generate.resolve build.complete
 # ====================================================================================
 # Targets
 
