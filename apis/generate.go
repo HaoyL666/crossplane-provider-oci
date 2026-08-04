@@ -8,18 +8,6 @@ Copyright 2021 Upbound Inc.
 // NOTE: See the below link for details on what is happening here.
 // https://github.com/golang/go/wiki/Modules#how-can-i-track-tool-dependencies-for-a-module
 
-// Remove existing CRDs
-//go:generate rm -rf ../package/crds
-
-// Remove generated files
-//go:generate bash -c "find . -iname 'zz_*' -delete"
-//go:generate bash -c "find . -type d -empty -delete"
-//go:generate bash -c "find ../internal/controller -iname 'zz_*' -delete"
-//go:generate bash -c "find ../internal/controller -type d -empty -delete"
-//go:generate bash -c "find ../cmd/provider -name 'zz_*' -type f -delete"
-//go:generate bash -c "find ../cmd/provider -type d -maxdepth 1 -mindepth 1 -empty -delete"
-//go:generate rm -rf ../examples-generated
-
 // Generate documentation from Terraform docs.
 //go:generate go run github.com/crossplane/upjet/v2/cmd/scraper -n ${TERRAFORM_PROVIDER_SOURCE} -r ../.work/${TERRAFORM_PROVIDER_SOURCE}/${TERRAFORM_DOCS_PATH} -o ../config/provider-metadata.yaml
 
