@@ -132,6 +132,7 @@ func TestServiceGroupings(t *testing.T) {
 			"oci_core_drg_route_distribution",
 			"oci_core_drg_route_distribution_statement",
 			"oci_core_drg_route_table",
+			"oci_core_default_drg_route_table",
 			"oci_core_drg_route_table_route_rule",
 			"oci_core_cross_connect",
 			"oci_core_cross_connect_group",
@@ -153,6 +154,20 @@ func TestServiceGroupings(t *testing.T) {
 				t.Errorf("Resource %s not found in GroupMap", resourceName)
 			}
 		}
+	}
+}
+
+// TestDefaultDrgRouteTableGroupOverride verifies that the exact DRG-family
+// mapping takes precedence over generic core route detection.
+func TestDefaultDrgRouteTableGroupOverride(t *testing.T) {
+	resource := &config.Resource{Name: "oci_core_default_drg_route_table"}
+	GroupKindOverrides()(resource)
+
+	if resource.ShortGroup != "networkconnectivity" {
+		t.Fatalf("ShortGroup = %q, want %q", resource.ShortGroup, "networkconnectivity")
+	}
+	if resource.Kind != "DefaultDrgRouteTable" {
+		t.Fatalf("Kind = %q, want %q", resource.Kind, "DefaultDrgRouteTable")
 	}
 }
 
