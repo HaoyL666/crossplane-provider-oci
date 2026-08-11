@@ -132,6 +132,7 @@ func TestServiceGroupings(t *testing.T) {
 			"oci_core_drg_route_distribution",
 			"oci_core_drg_route_distribution_statement",
 			"oci_core_drg_route_table",
+			"oci_core_default_drg_route_table",
 			"oci_core_drg_route_table_route_rule",
 			"oci_core_cross_connect",
 			"oci_core_cross_connect_group",
