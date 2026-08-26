@@ -29,6 +29,7 @@ import (
 	visionprivateendpoint "github.com/oracle/provider-oci/internal/controller/cluster/aivision/visionprivateendpoint"
 	analyticsinstance "github.com/oracle/provider-oci/internal/controller/cluster/analytics/analyticsinstance"
 	analyticsinstanceprivateaccesschannel "github.com/oracle/provider-oci/internal/controller/cluster/analytics/analyticsinstanceprivateaccesschannel"
+	analyticsinstanceresourcegroup "github.com/oracle/provider-oci/internal/controller/cluster/analytics/analyticsinstanceresourcegroup"
 	analyticsinstancevanityurl "github.com/oracle/provider-oci/internal/controller/cluster/analytics/analyticsinstancevanityurl"
 	announcementsubscription "github.com/oracle/provider-oci/internal/controller/cluster/announcementsservice/announcementsubscription"
 	announcementsubscriptionsactionschangecompartment "github.com/oracle/provider-oci/internal/controller/cluster/announcementsservice/announcementsubscriptionsactionschangecompartment"
@@ -336,6 +337,9 @@ import (
 	connection "github.com/oracle/provider-oci/internal/controller/cluster/datacatalog/connection"
 	dataasset "github.com/oracle/provider-oci/internal/controller/cluster/datacatalog/dataasset"
 	metastore "github.com/oracle/provider-oci/internal/controller/cluster/datacatalog/metastore"
+	infrastructure "github.com/oracle/provider-oci/internal/controller/cluster/datacc/infrastructure"
+	vmclusternetworkdatacc "github.com/oracle/provider-oci/internal/controller/cluster/datacc/vmclusternetwork"
+	vminstance "github.com/oracle/provider-oci/internal/controller/cluster/datacc/vminstance"
 	application "github.com/oracle/provider-oci/internal/controller/cluster/dataflow/application"
 	invokerun "github.com/oracle/provider-oci/internal/controller/cluster/dataflow/invokerun"
 	pool "github.com/oracle/provider-oci/internal/controller/cluster/dataflow/pool"
@@ -455,6 +459,7 @@ import (
 	oracledbazurevaultassociation "github.com/oracle/provider-oci/internal/controller/cluster/dbmulticloud/oracledbazurevaultassociation"
 	oracledbgcpidentityconnector "github.com/oracle/provider-oci/internal/controller/cluster/dbmulticloud/oracledbgcpidentityconnector"
 	oracledbgcpkeyring "github.com/oracle/provider-oci/internal/controller/cluster/dbmulticloud/oracledbgcpkeyring"
+	instanceddfs "github.com/oracle/provider-oci/internal/controller/cluster/ddfs/instance"
 	delegationcontrol "github.com/oracle/provider-oci/internal/controller/cluster/delegateaccesscontrol/delegationcontrol"
 	delegationsubscription "github.com/oracle/provider-oci/internal/controller/cluster/delegateaccesscontrol/delegationsubscription"
 	occdemandsignal "github.com/oracle/provider-oci/internal/controller/cluster/demandsignal/occdemandsignal"
@@ -551,6 +556,11 @@ import (
 	agenttool "github.com/oracle/provider-oci/internal/controller/cluster/generativeai/agenttool"
 	dedicatedaicluster "github.com/oracle/provider-oci/internal/controller/cluster/generativeai/dedicatedaicluster"
 	endpointgenerativeai "github.com/oracle/provider-oci/internal/controller/cluster/generativeai/endpoint"
+	generativeaiprivateendpoint "github.com/oracle/provider-oci/internal/controller/cluster/generativeai/generativeaiprivateendpoint"
+	hostedapplication "github.com/oracle/provider-oci/internal/controller/cluster/generativeai/hostedapplication"
+	hostedapplicationiam "github.com/oracle/provider-oci/internal/controller/cluster/generativeai/hostedapplicationiam"
+	hostedapplicationstorage "github.com/oracle/provider-oci/internal/controller/cluster/generativeai/hostedapplicationstorage"
+	hosteddeployment "github.com/oracle/provider-oci/internal/controller/cluster/generativeai/hosteddeployment"
 	importedmodel "github.com/oracle/provider-oci/internal/controller/cluster/generativeai/importedmodel"
 	modelgenerativeai "github.com/oracle/provider-oci/internal/controller/cluster/generativeai/model"
 	projectgenerativeai "github.com/oracle/provider-oci/internal/controller/cluster/generativeai/project"
@@ -776,6 +786,7 @@ import (
 	networkfirewallpolicyservice "github.com/oracle/provider-oci/internal/controller/cluster/networkfirewall/networkfirewallpolicyservice"
 	networkfirewallpolicytunnelinspectionrule "github.com/oracle/provider-oci/internal/controller/cluster/networkfirewall/networkfirewallpolicytunnelinspectionrule"
 	defaultdhcpoptions "github.com/oracle/provider-oci/internal/controller/cluster/networking/defaultdhcpoptions"
+	defaultdrgroutetable "github.com/oracle/provider-oci/internal/controller/cluster/networking/defaultdrgroutetable"
 	defaultroutetable "github.com/oracle/provider-oci/internal/controller/cluster/networking/defaultroutetable"
 	defaultsecuritylist "github.com/oracle/provider-oci/internal/controller/cluster/networking/defaultsecuritylist"
 	dhcpoptions "github.com/oracle/provider-oci/internal/controller/cluster/networking/dhcpoptions"
@@ -1019,6 +1030,7 @@ func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 		visionprivateendpoint.Setup,
 		analyticsinstance.Setup,
 		analyticsinstanceprivateaccesschannel.Setup,
+		analyticsinstanceresourcegroup.Setup,
 		analyticsinstancevanityurl.Setup,
 		announcementsubscription.Setup,
 		announcementsubscriptionsactionschangecompartment.Setup,
@@ -1326,6 +1338,9 @@ func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 		connection.Setup,
 		dataasset.Setup,
 		metastore.Setup,
+		infrastructure.Setup,
+		vmclusternetworkdatacc.Setup,
+		vminstance.Setup,
 		application.Setup,
 		invokerun.Setup,
 		pool.Setup,
@@ -1445,6 +1460,7 @@ func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 		oracledbazurevaultassociation.Setup,
 		oracledbgcpidentityconnector.Setup,
 		oracledbgcpkeyring.Setup,
+		instanceddfs.Setup,
 		delegationcontrol.Setup,
 		delegationsubscription.Setup,
 		occdemandsignal.Setup,
@@ -1541,6 +1557,11 @@ func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 		agenttool.Setup,
 		dedicatedaicluster.Setup,
 		endpointgenerativeai.Setup,
+		generativeaiprivateendpoint.Setup,
+		hostedapplication.Setup,
+		hostedapplicationiam.Setup,
+		hostedapplicationstorage.Setup,
+		hosteddeployment.Setup,
 		importedmodel.Setup,
 		modelgenerativeai.Setup,
 		projectgenerativeai.Setup,
@@ -1766,6 +1787,7 @@ func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 		networkfirewallpolicyservice.Setup,
 		networkfirewallpolicytunnelinspectionrule.Setup,
 		defaultdhcpoptions.Setup,
+		defaultdrgroutetable.Setup,
 		defaultroutetable.Setup,
 		defaultsecuritylist.Setup,
 		dhcpoptions.Setup,
@@ -2015,6 +2037,7 @@ func SetupGated_monolith(mgr ctrl.Manager, o controller.Options) error {
 		visionprivateendpoint.SetupGated,
 		analyticsinstance.SetupGated,
 		analyticsinstanceprivateaccesschannel.SetupGated,
+		analyticsinstanceresourcegroup.SetupGated,
 		analyticsinstancevanityurl.SetupGated,
 		announcementsubscription.SetupGated,
 		announcementsubscriptionsactionschangecompartment.SetupGated,
@@ -2322,6 +2345,9 @@ func SetupGated_monolith(mgr ctrl.Manager, o controller.Options) error {
 		connection.SetupGated,
 		dataasset.SetupGated,
 		metastore.SetupGated,
+		infrastructure.SetupGated,
+		vmclusternetworkdatacc.SetupGated,
+		vminstance.SetupGated,
 		application.SetupGated,
 		invokerun.SetupGated,
 		pool.SetupGated,
@@ -2441,6 +2467,7 @@ func SetupGated_monolith(mgr ctrl.Manager, o controller.Options) error {
 		oracledbazurevaultassociation.SetupGated,
 		oracledbgcpidentityconnector.SetupGated,
 		oracledbgcpkeyring.SetupGated,
+		instanceddfs.SetupGated,
 		delegationcontrol.SetupGated,
 		delegationsubscription.SetupGated,
 		occdemandsignal.SetupGated,
@@ -2537,6 +2564,11 @@ func SetupGated_monolith(mgr ctrl.Manager, o controller.Options) error {
 		agenttool.SetupGated,
 		dedicatedaicluster.SetupGated,
 		endpointgenerativeai.SetupGated,
+		generativeaiprivateendpoint.SetupGated,
+		hostedapplication.SetupGated,
+		hostedapplicationiam.SetupGated,
+		hostedapplicationstorage.SetupGated,
+		hosteddeployment.SetupGated,
 		importedmodel.SetupGated,
 		modelgenerativeai.SetupGated,
 		projectgenerativeai.SetupGated,
@@ -2762,6 +2794,7 @@ func SetupGated_monolith(mgr ctrl.Manager, o controller.Options) error {
 		networkfirewallpolicyservice.SetupGated,
 		networkfirewallpolicytunnelinspectionrule.SetupGated,
 		defaultdhcpoptions.SetupGated,
+		defaultdrgroutetable.SetupGated,
 		defaultroutetable.SetupGated,
 		defaultsecuritylist.SetupGated,
 		dhcpoptions.SetupGated,
