@@ -126,6 +126,7 @@ func TestServiceGroupings(t *testing.T) {
 		},
 		"networkconnectivity": {
 			"oci_core_drg",
+			"oci_core_default_drg_route_table",
 			"oci_core_drg_attachment",
 			"oci_core_drg_attachment_management",
 			"oci_core_drg_attachments_list",
@@ -174,6 +175,22 @@ func TestGroupKindOverrides(t *testing.T) {
 
 	if testResource.Kind != "Instance" {
 		t.Errorf("Expected Kind to be 'Instance', got '%s'", testResource.Kind)
+	}
+}
+
+// TestDefaultDrgRouteTableGroupKindOverride verifies that the exact mapping
+// takes precedence over the generic core detector, where "route" would
+// otherwise classify this DRG resource as networking.
+func TestDefaultDrgRouteTableGroupKindOverride(t *testing.T) {
+	resource := &config.Resource{Name: "oci_core_default_drg_route_table"}
+
+	GroupKindOverrides()(resource)
+
+	if resource.ShortGroup != "networkconnectivity" {
+		t.Errorf("Expected ShortGroup to be 'networkconnectivity', got %q", resource.ShortGroup)
+	}
+	if resource.Kind != "DefaultDrgRouteTable" {
+		t.Errorf("Expected Kind to be 'DefaultDrgRouteTable', got %q", resource.Kind)
 	}
 }
 
@@ -254,6 +271,7 @@ func TestSpecificServiceMappings(t *testing.T) {
 		{"oci_core_vcn", "networking", "Vcn"},
 		{"oci_core_volume", "blockstorage", "Volume"},
 		{"oci_core_drg", "networkconnectivity", "Drg"},
+		{"oci_core_default_drg_route_table", "networkconnectivity", "DefaultDrgRouteTable"},
 		{"oci_identity_compartment", "identity", "Compartment"},
 		{"oci_containerengine_cluster", "containerengine", "Cluster"},
 		{"oci_objectstorage_bucket", "objectstorage", "Bucket"},
