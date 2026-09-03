@@ -70,6 +70,23 @@ func TestGroupMapValidity(t *testing.T) {
 	}
 }
 
+func TestDefaultDrgRouteTableGroupAndKind(t *testing.T) {
+	const resourceName = "oci_core_default_drg_route_table"
+
+	calculator, exists := GroupMap[resourceName]
+	if !exists {
+		t.Fatalf("Resource %s not found in GroupMap", resourceName)
+	}
+
+	group, kind := calculator(resourceName)
+	if group != "networkconnectivity" {
+		t.Errorf("Resource %s expected group networkconnectivity, got %s", resourceName, group)
+	}
+	if kind != "DefaultDrgRouteTable" {
+		t.Errorf("Resource %s expected kind DefaultDrgRouteTable, got %s", resourceName, kind)
+	}
+}
+
 // TestServiceGroupings verifies that resources are grouped into expected services
 func TestServiceGroupings(t *testing.T) {
 	expectedGroups := map[string][]string{
@@ -132,6 +149,7 @@ func TestServiceGroupings(t *testing.T) {
 			"oci_core_drg_route_distribution",
 			"oci_core_drg_route_distribution_statement",
 			"oci_core_drg_route_table",
+			"oci_core_default_drg_route_table",
 			"oci_core_drg_route_table_route_rule",
 			"oci_core_cross_connect",
 			"oci_core_cross_connect_group",
