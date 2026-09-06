@@ -49,6 +49,9 @@ func Configure(p *config.Provider) {
 		r.References["compartment_id"] = config.Reference{
 			TerraformName: "oci_identity_compartment",
 		}
+		r.OverrideFieldNames["PlacementConstraintDetailsInitParameters"] = "ComputeClusterPlacementConstraintDetailsInitParameters"
+		r.OverrideFieldNames["PlacementConstraintDetailsObservation"] = "ComputeClusterPlacementConstraintDetailsObservation"
+		r.OverrideFieldNames["PlacementConstraintDetailsParameters"] = "ComputeClusterPlacementConstraintDetailsParameters"
 	})
 
 	p.AddResourceConfigurator("oci_core_compute_gpu_memory_cluster", func(r *config.Resource) {
