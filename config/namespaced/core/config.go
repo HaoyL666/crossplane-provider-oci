@@ -44,12 +44,7 @@ func Configure(p *config.Provider) {
 		}
 	})
 
-	p.AddResourceConfigurator("oci_core_compute_cluster", func(r *config.Resource) {
-		// REQUIRED
-		r.References["compartment_id"] = config.Reference{
-			TerraformName: "oci_identity_compartment",
-		}
-	})
+	p.AddResourceConfigurator("oci_core_compute_cluster", configureComputeCluster)
 
 	p.AddResourceConfigurator("oci_core_compute_gpu_memory_cluster", func(r *config.Resource) {
 		// REQUIRED
@@ -550,4 +545,15 @@ func Configure(p *config.Provider) {
 		}
 	})
 
+}
+
+func configureComputeCluster(r *config.Resource) {
+	r.References["compartment_id"] = config.Reference{
+		TerraformName: "oci_identity_compartment",
+	}
+	r.OverrideFieldNames = map[string]string{
+		"PlacementConstraintDetailsInitParameters": "ComputeClusterPlacementConstraintDetailsInitParameters",
+		"PlacementConstraintDetailsObservation":    "ComputeClusterPlacementConstraintDetailsObservation",
+		"PlacementConstraintDetailsParameters":     "ComputeClusterPlacementConstraintDetailsParameters",
+	}
 }
