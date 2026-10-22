@@ -8,6 +8,8 @@ import (
 	"github.com/oracle/provider-oci/config/cluster/containerengine"
 	"github.com/oracle/provider-oci/config/cluster/core"
 	"github.com/oracle/provider-oci/config/cluster/database"
+	"github.com/oracle/provider-oci/config/cluster/datasafe"
+	"github.com/oracle/provider-oci/config/cluster/dbmulticloud"
 	"github.com/oracle/provider-oci/config/cluster/dns"
 	"github.com/oracle/provider-oci/config/cluster/email"
 	"github.com/oracle/provider-oci/config/cluster/functions"
@@ -22,6 +24,7 @@ import (
 	"github.com/oracle/provider-oci/config/cluster/networkloadbalancer"
 	"github.com/oracle/provider-oci/config/cluster/nosql"
 	"github.com/oracle/provider-oci/config/cluster/objectstorage"
+	"github.com/oracle/provider-oci/config/cluster/opensearch"
 	"github.com/oracle/provider-oci/config/cluster/psql"
 	"github.com/oracle/provider-oci/config/cluster/recovery"
 	"github.com/oracle/provider-oci/config/cluster/redis"
@@ -36,6 +39,8 @@ func init() {
 	ProviderConfiguration.AddConfig(containerengine.Configure)
 	ProviderConfiguration.AddConfig(core.Configure)
 	ProviderConfiguration.AddConfig(database.Configure)
+	ProviderConfiguration.AddConfig(datasafe.Configure)
+	ProviderConfiguration.AddConfig(dbmulticloud.Configure)
 	ProviderConfiguration.AddConfig(dns.Configure)
 	ProviderConfiguration.AddConfig(email.Configure)
 	ProviderConfiguration.AddConfig(functions.Configure)
@@ -50,6 +55,7 @@ func init() {
 	ProviderConfiguration.AddConfig(networkloadbalancer.Configure)
 	ProviderConfiguration.AddConfig(nosql.Configure)
 	ProviderConfiguration.AddConfig(objectstorage.Configure)
+	ProviderConfiguration.AddConfig(opensearch.Configure)
 	ProviderConfiguration.AddConfig(psql.Configure)
 	ProviderConfiguration.AddConfig(recovery.Configure)
 	ProviderConfiguration.AddConfig(redis.Configure)

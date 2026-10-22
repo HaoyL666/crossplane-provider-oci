@@ -88,6 +88,21 @@ func TestTerraformUpgradeRemediationConfiguration(t *testing.T) {
 		"SSLCACertificateObservation":    "BlueGreenDeploymentSSLCACertificateObservation",
 		"SSLCACertificateParameters":     "BlueGreenDeploymentSSLCACertificateParameters",
 	}
+	datasafeEstimateTableSizesOverrides := map[string]string{
+		"TargetCredentialsInitParameters": "EstimateTableSizesTargetCredentialsInitParameters",
+		"TargetCredentialsObservation":    "EstimateTableSizesTargetCredentialsObservation",
+		"TargetCredentialsParameters":     "EstimateTableSizesTargetCredentialsParameters",
+	}
+	datasafeRegistrationPolicyOverrides := map[string]string{
+		"ConnectionOptionInitParameters": "RegistrationPolicyConnectionOptionInitParameters",
+		"ConnectionOptionObservation":    "RegistrationPolicyConnectionOptionObservation",
+		"ConnectionOptionParameters":     "RegistrationPolicyConnectionOptionParameters",
+	}
+	dbmulticloudAWSKeyPoolOverrides := map[string]string{
+		"ReplicationMetadataReplicationDetailsInitParameters": "OracleDbAwsKeyPoolReplicationMetadataReplicationDetailsInitParameters",
+		"ReplicationMetadataReplicationDetailsObservation":    "OracleDbAwsKeyPoolReplicationMetadataReplicationDetailsObservation",
+		"ReplicationMetadataReplicationDetailsParameters":     "OracleDbAwsKeyPoolReplicationMetadataReplicationDetailsParameters",
+	}
 
 	for scope, provider := range tests {
 		t.Run(scope, func(t *testing.T) {
@@ -96,6 +111,15 @@ func TestTerraformUpgradeRemediationConfiguration(t *testing.T) {
 			}
 			if got := provider.Resources["oci_mysql_blue_green_deployment"].OverrideFieldNames; !reflect.DeepEqual(got, mysqlOverrides) {
 				t.Errorf("unexpected MySQL Blue/Green field-name overrides: %#v", got)
+			}
+			if got := provider.Resources["oci_data_safe_estimate_table_sizes"].OverrideFieldNames; !reflect.DeepEqual(got, datasafeEstimateTableSizesOverrides) {
+				t.Errorf("unexpected Data Safe Estimate Table Sizes field-name overrides: %#v", got)
+			}
+			if got := provider.Resources["oci_data_safe_registration_policy"].OverrideFieldNames; !reflect.DeepEqual(got, datasafeRegistrationPolicyOverrides) {
+				t.Errorf("unexpected Data Safe Registration Policy field-name overrides: %#v", got)
+			}
+			if got := provider.Resources["oci_dbmulticloud_oracle_db_aws_key_pool"].OverrideFieldNames; !reflect.DeepEqual(got, dbmulticloudAWSKeyPoolOverrides) {
+				t.Errorf("unexpected DB Multicloud Oracle DB AWS Key Pool field-name overrides: %#v", got)
 			}
 
 			secretReference, ok := provider.Resources["oci_bds_bds_instance"].References["secret_id"]
@@ -113,6 +137,20 @@ func TestTerraformUpgradeRemediationConfiguration(t *testing.T) {
 			}
 			if !authDetails.Schema["api_key"].Sensitive {
 				t.Error("GoldenGate auth_details.api_key is not sensitive")
+			}
+		})
+	}
+}
+
+func TestServiceGroupDetectorOCIProductCatalog(t *testing.T) {
+	for _, resourceName := range []string{
+		"oci_oci_product_catalog_internal_admin_product",
+		"oci_oci_product_catalog_internal_product",
+	} {
+		t.Run(resourceName, func(t *testing.T) {
+			group, _ := ServiceGroupDetector(resourceName)
+			if group != "ociproductcatalog" {
+				t.Errorf("expected group ociproductcatalog, got %s", group)
 			}
 		})
 	}

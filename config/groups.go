@@ -767,6 +767,14 @@ func ServiceGroupDetector(resourceName string) (group string, kind string) {
 		// "Usage Proxy": "usage_proxy" -> "usageproxy"
 		group = "usageproxy"
 
+	case "oci":
+		// "OCI Product Catalog": "oci_product_catalog" -> "ociproductcatalog"
+		if len(parts) > 3 && parts[2] == "product" && parts[3] == "catalog" {
+			group = "ociproductcatalog"
+		} else {
+			group = servicePrefix
+		}
+
 	case "vbs":
 		// "Vbs Inst": "vbs_inst" -> "vbsinst"
 		group = "vbsinst"
