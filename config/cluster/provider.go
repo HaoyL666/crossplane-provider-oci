@@ -8,6 +8,8 @@ import (
 	"github.com/oracle/provider-oci/config/cluster/containerengine"
 	"github.com/oracle/provider-oci/config/cluster/core"
 	"github.com/oracle/provider-oci/config/cluster/database"
+	"github.com/oracle/provider-oci/config/cluster/datasafe"
+	"github.com/oracle/provider-oci/config/cluster/dbmulticloud"
 	"github.com/oracle/provider-oci/config/cluster/dns"
 	"github.com/oracle/provider-oci/config/cluster/email"
 	"github.com/oracle/provider-oci/config/cluster/functions"
@@ -37,6 +39,8 @@ func init() {
 	ProviderConfiguration.AddConfig(containerengine.Configure)
 	ProviderConfiguration.AddConfig(core.Configure)
 	ProviderConfiguration.AddConfig(database.Configure)
+	ProviderConfiguration.AddConfig(datasafe.Configure)
+	ProviderConfiguration.AddConfig(dbmulticloud.Configure)
 	ProviderConfiguration.AddConfig(dns.Configure)
 	ProviderConfiguration.AddConfig(email.Configure)
 	ProviderConfiguration.AddConfig(functions.Configure)
